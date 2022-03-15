@@ -38,7 +38,7 @@ https://jestjs.io/docs/ru/bypassing-module-mocks
 
 _enzyme:_
 
-https://airbnb.io/enzyme/
+https://enzymejs.github.io/enzyme/
 
 https://medium.com/@acesmndr/testing-react-functional-components-with-hooks-using-enzyme-f732124d320a
 
@@ -49,6 +49,6 @@ https://medium.com/@acesmndr/testing-react-functional-components-with-hooks-usin
 2. **Замокать** функцию getDate и написать юнит-тесты на компонент Order. Не забудьте сбросить/очистить замоканное.
 3. Добиться покрытия не менее 90% по всем модулям
 4. Соблюсти принципы автоматизации и не применить анти-паттерны
-5. Скинуть пулл-реквест с пройденным ci (укажите имя и фамилию в названии ПР) до конца семинара в [таблицу](https://docs.google.com/spreadsheets/d/11FhajaryptOdKtSXKEk8IwHZTCtQ1UudIZx6kf-41XA/edit?usp=sharing) и пройти ревью своих коллег (исправить все замечания и получить 2 апрува)
+5. Скинуть пулл-реквест с пройденным ci (укажите имя и фамилию в названии ПР) до конца семинара в [таблицу](https://docs.google.com/spreadsheets/d/1Yp26pHnBmF7a6jXQmM3fj-k0Jw17dBntnN1aoIlcOZ4/edit?usp=sharing) и пройти ревью своих коллег (исправить все замечания и получить 2 апрува)
 6. Выбрать себе минимум 2 пулл-реквеста на проверку, указать свое имя в графе "Проверяющий №_".
-7. После получения апрувов по ревью написать @VictoriaOtm, чтобы получить баллы.
+7. После получения апрувов по ревью написать [@emdobryanskaya](https://t.me/emdobryanskaya), чтобы получить баллы.

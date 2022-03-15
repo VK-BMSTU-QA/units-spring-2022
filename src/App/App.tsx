@@ -28,7 +28,10 @@ export const App: React.FC = () => {
 		setSortType(event.target.value);
 	}, []);
 
-	sortOrders(fakeOrders, getSortFunction(sortType));
+	const sortFunc = getSortFunction(sortType);
+	if (sortFunc) {
+		sortOrders(fakeOrders, sortFunc);
+	}
 
 	return (
 		<div className='App'>

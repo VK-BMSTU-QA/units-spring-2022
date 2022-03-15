@@ -13,12 +13,11 @@ export const sortTypes = {
  * @param {Array} orders - массив заказов
  * @param {Function} sortFunction - функция сортировки
  */
-export const sortOrders = (orders: Order[], sortFunction: any) => {
+export const sortOrders = (
+	orders: Order[] | undefined,
+	sortFunction: (order1: Order, order2: Order) => number,
+): void => {
 	if (!orders || !orders.length) {
-		return;
-	}
-
-	if (!sortFunction || typeof sortFunction !== 'function') {
 		return;
 	}
 
@@ -31,13 +30,15 @@ export const sortOrders = (orders: Order[], sortFunction: any) => {
  * @param sortType
  * @returns {sortByItemCount|sortByDate}
  */
-export const getSortFunction = (sortType: typeof sortTypes.COUNT | typeof sortTypes.DATE) => {
+type sortFuncType = (order1: Order, order2: Order) => number;
+export const getSortFunction = (sortType: typeof sortTypes.COUNT | typeof sortTypes.DATE): sortFuncType | null => {
 	switch(sortType) {
 	case sortTypes.DATE:
 		return sortByDate;
 	case sortTypes.COUNT:
 		return sortByItemCount;
 	}
+	return null;
 };
 
 

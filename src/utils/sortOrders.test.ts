@@ -1,130 +1,47 @@
-import {getSortFunction, sortByDate, sortByItemCount, sortOrders} from './sortOrders';
+import {getSortFunction, sortByDate, sortByItemCount, sortOrders, sortTypes} from './sortOrders';
 
 describe('sortOrders function', () => {
-	it('orders is null', () => {
-		expect(sortOrders(null, sortByItemCount)).toBe(undefined);
+	test.each([
+		{orders: null},
+		{orders: {}},
+	])('invalid orders', (orders) => {
+		expect(sortOrders(orders, sortByItemCount)).toBe(undefined);
 	});
 
-	it('orders is custom object', () => {
-		expect(sortOrders({}, sortByItemCount)).toBe(undefined);
-	});
 });
 
 describe('getSortFunction', () => {
-	it('sortType', () => {
-		expect(getSortFunction(null)).toBe(null);
+	test.each([
+		{order: sortTypes.COUNT, expected: 'sortByItemCount'},
+		{order: sortTypes.DATE, expected: 'sortByDate'},
+	])('different ortType', ({order, expected}) => {
+		expect(getSortFunction(order)?.name).toBe(expected);
+	});
+
+	it('invalid sortType', () => {
+		expect(getSortFunction(null)).toBeNull();
 	});
 });
 
 describe('sortByItemCount function', () => {
-	it('one of item is null', () => {
-		const order1 = null;
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('same items count', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('first longer', () => {
-		const order1 = {
-			items: ['item1', 'item2', 'item3'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(1);
-	});
-
-	it('second longer', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1', '2', '3'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(-1);
+	test.each([
+		{order1: null, order2: {items: ['1', '2']}, expected: 0},
+		{order1: {items: ['item1', 'item2']}, order2: {items: ['1', '2']}, expected: 0},
+		{order1: {items: ['item1', 'item2', 'item3']}, order2: {items: ['1', '2']}, expected: 1},
+		{order1: {items: ['item1', 'item2']}, order2: {items: ['1', '2', '3']}, expected: -1},
+	])('sortByItemCount', ({order1, order2, expected}) => {
+		expect(sortByItemCount(order1, order2)).toBe(expected);
 	});
 });
 
 describe('sortByDate function', () => {
-	it('one of item is null', () => {
-		const order1 = null;
-
-		const order2 = {
-			date: 1588359900000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('same items date', () => {
-		const order1 = {
-			date: 1588359900000,
-		};
-
-		const order2 = {
-			date: 1588359900000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('first older', () => {
-		const order1 = {
-			date: 1588360000000,
-		};
-
-		const order2 = {
-			date: 1588359900000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-
-	it('second older', () => {
-		const order1 = {
-			date: 1588359900000,
-		};
-
-		const order2 = {
-			date: 1588360000000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(1);
+	test.each([
+		{order1: null, order2: {date: 1588359900000}, expected: 0},
+		{order1: {date: 1588359900000}, order2: {date: 1588359900000}, expected: 0},
+		{order1: {date: 1588360000000}, order2: {date: 1588359900000}, expected: 1},
+		{order1: {date: 1588359900000}, order2: {date: 1588360000000}, expected: -1},
+	])('sortByItemCount', ({order1, order2, expected}) => {
+		expect(sortByDate(order1, order2)).toBe(expected);
 	});
 });
 

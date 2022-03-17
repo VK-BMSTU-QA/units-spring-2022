@@ -187,19 +187,32 @@ describe('getSortFunction function', () => {
 
 		const result = getSortFunction(null);
 
-		expect(result).toBe(null);
+		expect(result).toBeNull();
 	});
 });
 
 describe('sortOrders function', () => {
-	it('undefind', () => {
-		const result = sortOrders(undefined, (x: Order, y: Order) => 1);
+	it('test sorting', () => {
+		const orders = [
+			{date: 20},
+			{date: 5},
+			{date: 50}
+		];
 
-		expect(result).toBe(undefined);
+		const sortFunc = jest.fn();
+		sortOrders(orders, sortFunc);
+		expect(sortFunc).toBeCalled();
+	});
+	it('undefind', () => {
+		const sortFunc = jest.fn();
+		const result = sortOrders(undefined, sortFunc);
+
+		expect(result).toBeUndefined();
 	});
 	it('undefind2', () => {
-		const result = sortOrders(2, (x: Order, y: Order) => 1);
+		const sortFunc = jest.fn();
+		const result = sortOrders(2, sortFunc);
 
-		expect(result).toBe(undefined);
+		expect(result).toBeUndefined();
 	});
 });

@@ -17,6 +17,10 @@ describe('Order component', () => {
 		(getDate as jest.Mock).mockReturnValue('29 июня, пт, 2001 год');
 	});
 
+	afterEach(() => {
+		jest.clearAllMocks();
+	});
+
 	it('render with undefined', () => {
 		const order = {
 			id: 1,

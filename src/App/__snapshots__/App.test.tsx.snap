@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
-
+// Это эталонный  HTML для сравенения в тестах.
 exports[`App component render with default state DATE 1`] = `
 <div
   className="App"

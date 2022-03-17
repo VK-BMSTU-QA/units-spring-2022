@@ -43,6 +43,36 @@ exports[`Order.tsx all info 1`] = `
 </div>
 `;
 
+exports[`Order.tsx bad order info 1`] = `""`;
+
+exports[`Order.tsx empty item list 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Alihandro Express
+    </span>
+    <span
+      id="date"
+    >
+      9 декабря, вс, 2018 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Order.tsx some test 1`] = `
 <div
   className="Order"

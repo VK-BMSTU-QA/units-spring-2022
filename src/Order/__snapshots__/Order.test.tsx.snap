@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Order.tsx Handles incomplete order 1`] = `""`;
+
+exports[`Order.tsx Handles null order 1`] = `""`;
+
+exports[`Order.tsx Renders correct order 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      SHOP
+    </span>
+    <span
+      id="date"
+    >
+      17 марта, чт, 2022 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      айфончик
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      гэлакси телефон
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order.tsx Renders empty order 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      AZOT
+    </span>
+    <span
+      id="date"
+    >
+      17 марта, чт, 2022 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order.tsx Renders order with items: null 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      МАГАЗИН НА ДИВАНЕ
+    </span>
+    <span
+      id="date"
+    >
+      17 марта, чт, 2022 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order.tsx order with dict items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      VK )
+    </span>
+    <span
+      id="date"
+    >
+      17 марта, чт, 2022 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;

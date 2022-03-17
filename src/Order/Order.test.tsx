@@ -38,7 +38,7 @@ describe('Order.tsx', () => {
 	test.each([
 		{id: 0, date: 5, shop: undefined, items:[]},
 		{id: 0, date: undefined, shop: 'sem 17.03', items:[]},
-	])('OrderComponent({order: %s})', (order) => {
+	])('Проверка невалидного компонента OrderComponent({order: %s})', (order) => {
 		const orderComponent = OrderComponent({order: order}); 
 		expect(orderComponent).toBeNull();
 	});

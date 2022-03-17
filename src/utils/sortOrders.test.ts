@@ -128,15 +128,25 @@ describe('sortByDate function', () => {
 	});
 });
 
-test.each([
-	{type: sortTypes.DATE, expected: sortByDate},
-	{type: sortTypes.COUNT, expected: sortByItemCount},
-	{type: typeof null, expected: null},
-  ])('getSortFunction($type)', ({type, expected}) => {
-	const result = getSortFunction(type);
+describe('getSortFunction function', () => {
+	it('sort date', () => {
+		const result = getSortFunction(sortTypes.DATE);
 
-	expect(result).toBe(expected);
-  });
+		expect(result).toBe(sortByDate);
+	});
+
+	it('sort count', () => {
+		const result = getSortFunction(sortTypes.COUNT);
+
+		expect(result).toBe(sortByItemCount);
+	});
+
+	it('bad case: null data', () => {
+		const result = getSortFunction(typeof null);
+
+		expect(result).toBeNull();
+	});
+});
 
 describe('sortOrders function', () => {
 	it('sort by item count', () => {

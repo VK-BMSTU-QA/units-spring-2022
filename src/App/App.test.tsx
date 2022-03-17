@@ -15,10 +15,6 @@ describe('App component', () => {
 
 	beforeEach(() => {
 		wrapper = shallow(<App/>);  // enzyme эляция рендера компонентов как в index.tsx. С этим приколом потом и работаем.
-		/**
-		 * Есть еще разные функи:
-		 * -
-		 */
 	});
 
 	it('render with default state DATE', () => {

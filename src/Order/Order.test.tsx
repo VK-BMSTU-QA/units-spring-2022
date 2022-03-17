@@ -3,71 +3,53 @@ import {OrderComponent} from './Order';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
+jest.mock('../utils/getDate');
+import { getDate } from '../utils/getDate';
+import {fakeOrders} from '../data/fakeOrders';
+
 configure({ adapter: new Adapter() });
 
 describe('Order.tsx', () => {
+
+	beforeEach(() => {
+		getDate.mockReturnValue('date');
+	});
+
+	afterAll(() => {
+		jest.resetModules();
+	});
+
 	it('order as null', () => {
-		const order = null;
-		const wrapper = shallow(<OrderComponent order={order}/>);
+		const wrapper = shallow(<OrderComponent order={null}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('order as different dict', () => {
+	it('order as invalid obj', () => {
 		const order = {
 			id: 100,
 			items: [],
 		};
 		const wrapper = shallow(<OrderComponent order={order}/>);
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('order with null items', () => {
-		const order = {
-			id: 100,
-			date: 1588359900000,
-			shop: 'Сбереги Мега Маркер',
-			items: null,
-		};
-		const wrapper = shallow(<OrderComponent order={order}/>);
+		const wrapper = shallow(<OrderComponent order={{...fakeOrders[0], items: []}}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('order with dict items', () => {
-		const order = {
-			id: 100,
-			date: 1588359900000,
-			shop: 'Сбереги Мега Маркер',
-			items: {
-				a: 'b',
-			},
-		};
-		const wrapper = shallow(<OrderComponent order={order}/>);
+	it('order with invalid items obj', () => {
+		const wrapper = shallow(<OrderComponent order={{...fakeOrders[0], items: [{a: 'b'}]}}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('order with empty items', () => {
-		const order = {
-			id: 100,
-			date: 1588359900000,
-			shop: 'Сбереги Мега Маркер',
-			items: [],
-		};
-		const wrapper = shallow(<OrderComponent order={order}/>);
+		const wrapper = shallow(<OrderComponent order={fakeOrders[0]}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('order with empty items', () => {
-		const order = {
-			id: 100,
-			date: 1588359900000,
-			shop: 'Сбереги Мега Маркер',
-			items: [
-				'Утиный пластмасса для показ новый год',
-				'Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан',
-				'Новый стиль один розница яйцо для упаковки форма латекс',
-			],
-		};
-		const wrapper = shallow(<OrderComponent order={order}/>);
+		const wrapper = shallow(<OrderComponent order={fakeOrders[1]}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 });

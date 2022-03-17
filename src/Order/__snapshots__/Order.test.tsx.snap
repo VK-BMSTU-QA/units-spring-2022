@@ -1,36 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx order as different dict 1`] = `""`;
-
 exports[`Order.tsx order as null 1`] = `""`;
-
-exports[`Order.tsx order with dict items 1`] = `
-<div
-  className="Order"
->
-  <div
-    className="Order-header"
-  >
-    <span
-      className="Order-shop"
-    >
-      Сбереги Мега Маркер
-    </span>
-    <span
-      id="date"
-    >
-      1 мая, пт, 2020 год
-    </span>
-  </div>
-  <div
-    className="Order-items"
-  >
-    <div>
-      Заказ пуст...
-    </div>
-  </div>
-</div>
-`;
 
 exports[`Order.tsx order with empty items 1`] = `
 <div
@@ -47,7 +17,7 @@ exports[`Order.tsx order with empty items 1`] = `
     <span
       id="date"
     >
-      1 мая, пт, 2020 год
+      date
     </span>
   </div>
   <div
@@ -75,7 +45,7 @@ exports[`Order.tsx order with empty items 2`] = `
     <span
       id="date"
     >
-      1 мая, пт, 2020 год
+      date
     </span>
   </div>
   <div
@@ -103,6 +73,37 @@ exports[`Order.tsx order with empty items 2`] = `
 </div>
 `;
 
+exports[`Order.tsx order with invalid items obj 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Сбереги Мега Маркер
+    </span>
+    <span
+      id="date"
+    >
+      date
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      <Component />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Order.tsx order with null items 1`] = `
 <div
   className="Order"
@@ -118,7 +119,7 @@ exports[`Order.tsx order with null items 1`] = `
     <span
       id="date"
     >
-      1 мая, пт, 2020 год
+      date
     </span>
   </div>
   <div

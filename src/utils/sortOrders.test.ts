@@ -38,9 +38,9 @@ describe('sortByDate function', () => {
 	test.each([
 		{order1: null, order2: {date: 1588359900000}, expected: 0},
 		{order1: {date: 1588359900000}, order2: {date: 1588359900000}, expected: 0},
-		{order1: {date: 1588360000000}, order2: {date: 1588359900000}, expected: 1},
-		{order1: {date: 1588359900000}, order2: {date: 1588360000000}, expected: -1},
-	])('sortByItemCount', ({order1, order2, expected}) => {
+		{order1: {date: 1588360000000}, order2: {date: 1588359900000}, expected: -1},
+		{order1: {date: 1588359900000}, order2: {date: 1588360000000}, expected: 1},
+	])('sortByDate', ({order1, order2, expected}) => {
 		expect(sortByDate(order1, order2)).toBe(expected);
 	});
 });

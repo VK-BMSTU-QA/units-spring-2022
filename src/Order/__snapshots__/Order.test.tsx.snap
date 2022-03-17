@@ -40,7 +40,7 @@ exports[`Order.tsx order with empty items 2`] = `
     <span
       className="Order-shop"
     >
-      Сбереги Мега Маркер
+      Alihandro Express
     </span>
     <span
       id="date"

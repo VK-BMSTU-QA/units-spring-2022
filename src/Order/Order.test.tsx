@@ -25,7 +25,7 @@ describe('Order.tsx', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('items (Alihandro Express)', () => {
+	it('null data', () => {
 		wrapper = shallow(<OrderComponent order={{date: 0}}/>);
 		expect(wrapper).toMatchSnapshot();
 	});

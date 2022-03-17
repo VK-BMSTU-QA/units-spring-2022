@@ -1,71 +1,145 @@
-import {sortByDate, sortByItemCount, sortOrders} from './sortOrders';
+import {getSortFunction, sortByDate, sortByItemCount, sortOrders} from './sortOrders';
 import {Order} from '../data/fakeOrders';
 
 describe('sortByItemCount function', () => {
-	it('same items count', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
+	it.each([
+		[
+			'same items count',
+			{items: ['item1', 'item2']},
+			{items: ['1', '2']},
+			0
+		],
+		[
+			'the first bigger than the second',
+			{items: ['1', '2', '3']},
+			{items: ['1', '2']},
+			1
+		],
+		[
+			'the second bigger than the first',
+			{items: ['1', '2']},
+			{items: ['1', '2', '3']},
+			-1
+		],
+		[
+			'one order is empty',
+			{items: []},
+			{items: ['1', '2']},
+			-1
+		],
+		[
+			'items are undefined',
+			{items: undefined},
+			{items: undefined},
+			0
+		],
+	]) ('%p', (name, firstOrder, secondOrder, expected) => {
+		expect(sortByItemCount(firstOrder, secondOrder)).toEqual(expected);
 	});
-	it('the first bigger than the second', () => {
-		const order1 = {
-			items: ['item1', 'item2', 'item3'],
-		};
+});
 
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(1);
+describe('sortByDate function', () => {
+	it.each([
+		[
+			'same orders` data',
+			{
+				id: 1,
+				date: 1588359900000,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1'],
+			},
+			{
+				id: 2,
+				date: 1588359900000,
+				shop: 'Alihandro Express',
+				items: [
+					'2',
+					'1',
+				]
+			},
+			0
+		],
+		[
+			'the first newer than the second',
+			{
+				id: 1,
+				date: 1588359900001,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1'],
+			},
+			{
+				id: 2,
+				date: 1588359900000,
+				shop: 'Alihandro Express',
+				items: [
+					'2',
+					'1',
+				]
+			},
+			-1
+		],
+		[
+			'the second newer than the first',
+			{
+				id: 1,
+				date: 1588359900000,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1'],
+			},
+			{
+				id: 2,
+				date: 1588359900001,
+				shop: 'Alihandro Express',
+				items: [
+					'2',
+					'1',
+				]
+			},
+			1
+		],
+		[
+			'orders without data',
+			{
+				id: 1,
+				date: undefined,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1'],
+			},
+			{
+				id: 2,
+				date: undefined,
+				shop: 'Alihandro Express',
+				items: [
+					'2',
+					'1',
+				]
+			},
+			0
+		],
+	]) ('%p', (name, firstOrder, secondOrder, expected) => {
+		expect(sortByDate(firstOrder, secondOrder)).toEqual(expected);
 	});
-	it('the second bigger than the first', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
+});
 
-		const order2 = {
-			items: ['1', '2', '5'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-	it('one order is empty', () => {
-		const order1 = {
-			items: [],
-		};
-
-		const order2 = {
-			items: ['1', '2', '5'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-	it('two orders are empty', () => {
-		const order1 = {
-			items: [],
-		};
-
-		const order2 = {
-			items: [],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
+describe('getSortFunction function', () => {
+	it.each([
+		[
+			'sort by count',
+			'count',
+			sortByItemCount,
+		],
+		[
+			'sort by date',
+			'date',
+			sortByDate,
+		],
+		[
+			'not date or count sort',
+			'notCountAndNoteDate',
+			null,
+		],
+	]) ('%p', (name, sortType, expected) => {
+		expect(getSortFunction(sortType)).toEqual(expected);
 	});
 });
 
@@ -91,7 +165,7 @@ describe('sortOrders function', () => {
 				date: 1300000000000,
 				shop: 'Lamodник.ru',
 				items: [
-					'1', '2',
+					'1', '2','3'
 				]
 			}];
 		const sortedFakeOrders: Order[] = [
@@ -100,7 +174,7 @@ describe('sortOrders function', () => {
 				date: 1300000000000,
 				shop: 'Lamodник.ru',
 				items: [
-					'1', '2',
+					'1', '2','3'
 				]
 			},
 			{
@@ -122,57 +196,144 @@ describe('sortOrders function', () => {
 
 		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
 	});
-
-	it('sort order by date', () => {
+	it('sort with the same date', () => {
 		const fakeOrders: Order[] = [
 			{
 				id: 1,
+				date: 1100000000000,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1', '2', '3', '4', '5'],
+			},
+			{
+				id: 2,
+				date: 1100000000000,
+				shop: 'Alihandro Express',
+				items: [
+					'1','2',
+				]
+			},
+		];
+		const sortedFakeOrders: Order[] = [
+			{
+				id: 1,
+				date: 1100000000000,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1', '2', '3', '4', '5'],
+			},
+			{
+				id: 2,
+				date: 1100000000000,
+				shop: 'Alihandro Express',
+				items: [
+					'1','2',
+				]
+			},
+		];
+		sortOrders(fakeOrders, sortByDate);
+
+		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
+	});
+
+	it('sort order by orders count', () => {
+		const fakeOrders: Order[] = [
+			{
+				id: 5,
 				date: 1588359900000,
 				shop: 'Сбереги Мега Маркер',
 				items: ['1', '2', '3', '4', '5'],
 			},
 			{
 				id: 2,
-				date: 1544356800000,
-				shop: 'Alihandro Express',
+				date: 1652481120001,
+				shop: 'Lamodник.ru',
 				items: [
-					'1',
+					'1','2'
 				]
 			},
 			{
 				id: 3,
-				date: 1652481120000,
-				shop: 'Lamodник.ru',
+				date: 1544356800002,
+				shop: 'Alihandro Express',
 				items: [
-					'1', '2',
+					'1', '2','3'
 				]
 			}];
 		const sortedFakeOrders: Order[] = [
 			{
 				id: 2,
-				date: 1544356800000,
-				shop: 'Alihandro Express',
-				items: [
-					'1',
-				]
-			},
-			{
-				id: 3,
-				date: 1652481120000,
+				date: 1652481120001,
 				shop: 'Lamodник.ru',
 				items: [
 					'1', '2',
 				]
-			}, {
-				id: 1,
+			},
+			{
+				id: 3,
+				date: 1544356800002,
+				shop: 'Alihandro Express',
+				items: [
+					'1','2', '3'
+				]
+			},
+			{
+				id: 5,
 				date: 1588359900000,
 				shop: 'Сбереги Мега Маркер',
 				items: ['1', '2', '3', '4', '5'],
 			},];
-		sortOrders(fakeOrders,sortByItemCount );
+		sortOrders(fakeOrders, sortByItemCount);
 
 		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
 	});
 
+	it('sort sorted orders by date', () => {
+		const fakeOrders: Order[] = [
+			{
+				id: 1,
+				date: 1588359900002,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1', '2', '3', '4', '5'],
+			},
+			{
+				id: 2,
+				date: 1544356800001,
+				shop: 'Alihandro Express',
+				items: [
+					'1',
+				]
+			},];
+		const sortedFakeOrders: Order[] = fakeOrders;
+		sortOrders(fakeOrders, sortByDate);
+
+		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
+	});
+
+	it('sort sorted orders by orders` count', () => {
+		const fakeOrders: Order[] = [
+			{
+				id: 1,
+				date: 1588359900002,
+				shop: 'Сбереги Мега Маркер',
+				items: ['1', '2'],
+			},
+			{
+				id: 2,
+				date: 1544356800001,
+				shop: 'Alihandro Express',
+				items: ['1', '2', '3', '4', '5']
+			},];
+		const sortedFakeOrders: Order[] = fakeOrders;
+		sortOrders(fakeOrders, sortByItemCount);
+
+		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
+	});
+
+	it('sort empty orders', () => {
+		const fakeOrders: Order[] = [];
+		const sortedFakeOrders: Order[] = fakeOrders;
+		sortOrders(fakeOrders, sortByItemCount);
+
+		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
+	});
 });
 

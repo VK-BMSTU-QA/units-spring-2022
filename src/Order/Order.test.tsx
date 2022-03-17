@@ -9,70 +9,50 @@ configure({ adapter: new Adapter() });
 
 
 describe('Order.tsx', () => {
-	it('some test', () => {
-		// test something here
-	});
-});
+	let wrapper;
+	it('order', () => {
+		getDate.mockReturnValue('1 января, чт, 1970 год');
+		const order: Order = {
+			id: 1,
+			date: 17032022,
+			shop: 'MegaShop',
+			items: ['Бургер', 'Кола']
+		};
 
-describe('Order.tsx', () => {
-	const wrapper;
-	getDate.mockReturnValue('1 января, чт, 1970 год');
-	const order: Order = {
-		id: 1,
-		date: 17032022,
-		shop: 'MegaShop',
-		items: ['Бургер', 'Кола']
-	};
+		const key = 0;
 
-	const key = 0;
-
-	wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
-
-	it('render with default state', () => {
+		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
+	it('no items', ()=>{
+		getDate.mockReturnValue('1 января, чт, 1970 год');
+		const order: Order = {
+			id: 1,
+			date: 17032022,
+			shop: 'MegaShop',
+			items: {}
+		};
 	
-
-});
-
-describe('Order.tsx', () => {
-	const wrapper;
-	getDate.mockReturnValue('1 января, чт, 1970 год');
-	const order: Order = {
-		id: 1,
-		date: 17032022,
-		shop: 'MegaShop',
-		items: {}
-	};
-
-	const key = 0;
-
-	wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
-
-	it('no items', () => {
+		const key = 0;
+	
+		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
+	
 		expect(wrapper).toMatchSnapshot();
 	});
 
+	it('no date', ()=>{
+		getDate.mockReturnValue(null);
+		const order: Order = {
+			id: 1,
+			shop: 'MegaShop',
+			items: ['Бургер', 'Кола']
+		};
+	
+		const key = 0;
+	
+		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
 
-});
-
-describe('Order.tsx', () => {
-	const wrapper;
-	getDate.mockReturnValue('1 января, чт, 1970 год');
-	const order: Order = {
-		id: 1,
-		shop: 'MegaShop',
-		items: ['Бургер', 'Кола']
-	};
-
-	const key = 0;
-
-	wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
-
-	it('no date', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
-
-
 });

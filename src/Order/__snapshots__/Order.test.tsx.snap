@@ -30,6 +30,43 @@ exports[`Order.tsx no items 1`] = `
 </div>
 `;
 
+exports[`Order.tsx order 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      MegaShop
+    </span>
+    <span
+      id="date"
+    >
+      1 января, чт, 1970 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      Бургер
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      Кола
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Order.tsx render with default state 1`] = `
 <div
   className="Order"

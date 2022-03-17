@@ -20,7 +20,7 @@
     "test-coverage": "npm test -- --coverage",
     "test-update-snap": "npm test -- --updateSnapshot",
     "eject": "react-scripts eject",
-    "test:report": "react-scripts test --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter & open test-report.html"
+    "test:report": "react-scripts test --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter"
   },
   "eslintConfig": {
     "extends": "react-app"

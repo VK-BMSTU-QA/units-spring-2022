@@ -26,7 +26,7 @@
 
 https://create-react-app.dev/docs/running-tests
 
-_jest:_
+_jest:_ 
 
 https://jestjs.io/docs/ru/getting-started
 

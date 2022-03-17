@@ -34,4 +34,12 @@ describe('Order.tsx', () => {
 		expect(wrapper).toMatchSnapshot();
 		expect(getDate).toBeCalled();
 	});
+
+	test.each([
+		{id: 0, date: 5, shop: undefined, items:[]},
+		{id: 0, date: undefined, shop: 'sem 17.03', items:[]},
+	])('OrderComponent({order: %s})', (order) => {
+		const orderComponent = OrderComponent({order: order}); 
+		expect(orderComponent).toBeNull();
+	});
 });

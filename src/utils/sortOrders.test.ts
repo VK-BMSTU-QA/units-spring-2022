@@ -22,7 +22,7 @@ describe('sortByItemCount function', () => {
 		
 		const order2 = {
 			items: ['1', '2'],
-		}
+		};
 
 		const result = sortByItemCount(order1, order2);
 		expect(result).toBe(1);
@@ -34,24 +34,24 @@ describe('sortByItemCount function', () => {
 	it('Handles empty arrays', () =>{
 		const order1 = {
 			items: ['1', '2'],
-		}
+		};
 
 		const order2 = {
 			items: [],
-		}
+		};
 
 		const result = sortByItemCount(order1, order2);
-		expect(result).toBe(1)
+		expect(result).toBe(1);
 	});
 
 	it('Handles empty orders', () => {
 		const order1 = {
-		}
+		};
 		const order2 = {
-		}
+		};
 		const result = sortByItemCount(order1, order2);
 		expect(result).toBe(undefined);
-	})
+	});
 	
 });
 
@@ -69,8 +69,8 @@ describe('sortByDate function', () => {
 		const now = Date.now();
 		const later = now + 3600 * 1000;
 		
-		const order1 = {date: now}
-		const order2 = {date: later}
+		const order1 = {date: now};
+		const order2 = {date: later};
 
 		const result = sortByDate(order1, order2);
 		expect(result).toBe(1);
@@ -87,7 +87,7 @@ describe('sortByDate function', () => {
 		const result = sortByDate(order1, order2);
 		
 		expect(result).toBe(0);
-	})
+	});
 });
 
 describe('sortOrders function', () => {
@@ -108,8 +108,8 @@ describe('sortOrders function', () => {
 		const now = Date.now();
 		const later = now + 3600 * 1000;
 		
-		const order1 = {date: now}
-		const order2 = {date: later}
+		const order1 = {date: now};
+		const order2 = {date: later};
 
 		const result = sortOrders([order1, order2], sortByDate);
 		expect(result).toBe(1);
@@ -117,7 +117,7 @@ describe('sortOrders function', () => {
 		const reverseResult = sortOrders([order2, order1], sortByDate);
 		console.log(reverseResult);
 		expect(reverseResult).toBe(0);
-	})
+	});
 
 	it('Handles empty orders', () => {
 		const order1 = {};
@@ -125,7 +125,7 @@ describe('sortOrders function', () => {
 
 		const result = sortOrders([order1, order2], sortByDate);
 		expect(result).toBe(undefined);
-	})
+	});
 });
 
 describe('getSortFunction function', () => {
@@ -136,5 +136,5 @@ describe('getSortFunction function', () => {
 	])('Returns correct sort type', ({order, expected}) =>  {
 		const result = getSortFunction(order);
 		expect(result).toBe(expected);
-	})
-})
+	});
+});

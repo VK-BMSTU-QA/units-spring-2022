@@ -1,11 +1,21 @@
+jest.mock('../utils/getDate');
 import React from 'react';
 import {OrderComponent} from './Order';
+import {getDate} from '../utils/getDate';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
 describe('Order.tsx', () => {
+	beforeEach(() => {
+		(getDate as jest.Mock).mockReturnValue('26 мая, пт, 2020 год');
+	});
+
+	afterEach(() => {
+		jest.clearAllMocks();
+	});
+
 	it('all info', () => {
 		const someOrder = {
 			id: 123,

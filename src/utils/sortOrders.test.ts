@@ -17,6 +17,7 @@ describe('sortByDate function', () => {
 		[{date: 1}, {date: 1}, 0],
 		[{date: 1}, {date: 10}, 1],
 		[{date: 10}, {date: 1}, -1],
+		[{date: null}, {date: 1}, 0],
 	])('test data: %o %o %o', (order1, order2, expected) => {
 		const result = sortByDate(order1, order2);
 		expect(result).toBe(expected);

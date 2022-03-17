@@ -1,13 +1,22 @@
 import React from 'react';
 import 'jest';
+import {shallow, configure} from 'enzyme';
+import {OrderComponent} from './Order';
+import {fakeOrders} from '../data/fakeOrders';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 const mocGetData: jest.Mock = jest.fn()
-	.mockImplementationOnce(():string => 'aa')
-	.mockImplementationOnce(():string => 'bb')
-	.mockImplementationOnce(():string => 'cc');
+	.mockReturnValue('aa')
+	.mockReturnValue('bb')
+	.mockReturnValue('cc');
 
 describe('Order.tsx', () => {
-	it('some test', () => {
-		// test something here
+	let wrapper;
+
+	it('simple (Сбереги Мега Маркер)', () => {
+		wrapper = shallow(<OrderComponent order={fakeOrders[0]}/>);
+		expect(wrapper).toMatchSnapshot();
 	});
 });

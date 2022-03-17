@@ -23,7 +23,7 @@ test.each([
 	[[], ['2'],  -1],
 	[[], [],  0],
 	[NaN, NaN, 0],
-  ])('sortByItemCount(%i, %i, %i)', (a, b, expected) => {
+])('sortByItemCount(%i, %i, %i)', (a, b, expected) => {
 	const order1 = {
 		items: a,
 	};
@@ -34,9 +34,9 @@ test.each([
 	const res = sortByItemCount(order1, order2);
 	expect(res).toEqual(expected);
 
-  });
+});
 
-  describe('sortByItemCount invalid', () => {
+describe('sortByItemCount invalid', () => {
 	it('all Nan', () => {
 		
 		const result = sortByItemCount(NaN, NaN);
@@ -73,7 +73,7 @@ test.each([
 	[[NaN], [NaN],  0],
 	[NaN, NaN,  0],
 
-  ])('sortByDate(%i, %i, %i)', (a, b, expected) => {
+])('sortByDate(%i, %i, %i)', (a, b, expected) => {
 	const order1 = {
 		date: a,
 	};
@@ -84,9 +84,9 @@ test.each([
 	const res = sortByDate(order1, order2);
 	expect(res).toEqual(expected);
 
-  });
+});
 
-  describe('sortByDate invalid', () => {
+describe('sortByDate invalid', () => {
 	it('all Nan', () => {
 		
 		const result = sortByDate(NaN, NaN);
@@ -119,98 +119,98 @@ test.each([
 	[NaN, null],
 	[sortTypes.DATE, sortByDate],
 	[sortTypes.COUNT, sortByItemCount],
-	["nothing else", null],
-  ])('getSortFunction(%i)', (type, expected) => {
+	['nothing else', null],
+])('getSortFunction(%i)', (type, expected) => {
 
 	const res = getSortFunction(type);
 	expect(res).toEqual(expected);
 
-  });
+});
 
-  test.each([
-		[[
-			{date: 10}, 
-			{date: 20}, 
-		], 
-		sortByDate, 
-		[
-			{date: 20},
-			{date: 10}, 
-		]
+test.each([
+	[[
+		{date: 10}, 
+		{date: 20}, 
+	], 
+	sortByDate, 
+	[
+		{date: 20},
+		{date: 10}, 
+	]
 	],
-		[[
-			{date: 20}, 
-			{date: 10}, 
-		], 
-		sortByDate, 
-		[
-			{date: 20},
-			{date: 10}, 
-		]
+	[[
+		{date: 20}, 
+		{date: 10}, 
+	], 
+	sortByDate, 
+	[
+		{date: 20},
+		{date: 10}, 
+	]
 	],
-		[[
-			{date: 20}, 
-			{date: 20}, 
-		], 
-		sortByDate, 
-		[
-			{date: 20},
-			{date: 20}, 
-		]
-		],
-		[[
-			{date: 20}, 
-			{date: 20}, 
-		], 
-		sortByDate, 
-		[
-			{date: 20},
-			{date: 20}, 
-		]
-		],
-		[[
-			{date: 20}, 
-		], 
-		sortByDate, 
-		[
-			{date: 20}, 
-		]
-		],
+	[[
+		{date: 20}, 
+		{date: 20}, 
+	], 
+	sortByDate, 
+	[
+		{date: 20},
+		{date: 20}, 
+	]
+	],
+	[[
+		{date: 20}, 
+		{date: 20}, 
+	], 
+	sortByDate, 
+	[
+		{date: 20},
+		{date: 20}, 
+	]
+	],
+	[[
+		{date: 20}, 
+	], 
+	sortByDate, 
+	[
+		{date: 20}, 
+	]
+	],
 		
-  ])('sortOrder(%i, %i) -  by date', (orders, func, expected) => {
+])('sortOrder(%i, %i) -  by date', (orders, func, expected) => {
 	expect(() => {
-		sortOrders(orders, func)
+		sortOrders(orders, func);
 	}).not.toThrow();
 	expect(orders).toEqual(expected);
-  });
+});
 
 
 test.each([
-[[
-	{items: [10]}, 
-	{items: [20]}, 
-], 
-sortByItemCount, 
-[
-	{items: [10]}, 
-	{items: [20]}, 
-]
-],
-[[
-	{items: [10, 20, 30]}, 
-	{items: [20, 30]}, 
-], 
-sortByItemCount, 
-[
-	{items: [20, 30]}, 
-	{items: [10, 20, 30]}, 
-]
-],
+	[[
+		{items: [10]}, 
+		{items: [20]}, 
+	], 
+	sortByItemCount, 
+	[
+		{items: [10]}, 
+		{items: [20]}, 
+	]
+	],
+	[[
+		{items: [10, 20, 30]}, 
+		{items: [20, 30]}, 
+	], 
+	sortByItemCount, 
+	[
+		{items: [20, 30]}, 
+		{items: [10, 20, 30]}, 
+	]
+	],
 ])('sortOrder(%i, %i) -  by items', (orders, func, expected) => {
-expect(() => {
-	sortOrders(orders, func)
-}).not.toThrow();
-expect(orders).toEqual(expected);
+	expect(() => {
+		sortOrders(orders, func);
+	}).not.toThrow();
+	expect(orders).toEqual(expected);
 });
 
 describe('sortOrder empty', () => {
@@ -220,7 +220,7 @@ describe('sortOrder empty', () => {
 		const sortedOrders: Order[] = [];
 
 		expect(() => {
-			sortOrders(orders, sortByDate)
+			sortOrders(orders, sortByDate);
 		}).not.toThrow();
 
 		expect(orders).toEqual(sortedOrders);

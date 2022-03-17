@@ -1,4 +1,20 @@
-import {sortByDate, sortByItemCount} from './sortOrders';
+import {getSortFunction, sortByDate, sortByItemCount, sortOrders} from './sortOrders';
+
+describe('sortOrders function', () => {
+	it('orders is null', () => {
+		expect(sortOrders(null, sortByItemCount)).toBe(undefined);
+	});
+
+	it('orders is custom object', () => {
+		expect(sortOrders({}, sortByItemCount)).toBe(undefined);
+	});
+});
+
+describe('getSortFunction', () => {
+	it('sortType', () => {
+		expect(getSortFunction(null)).toBe(null);
+	});
+});
 
 describe('sortByItemCount function', () => {
 	it('one of item is null', () => {

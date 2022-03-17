@@ -73,6 +73,8 @@ exports[`Order.tsx no items (Сбереги Мега Маркер) 1`] = `
 </div>
 `;
 
+exports[`Order.tsx null data 1`] = `""`;
+
 exports[`Order.tsx simple (Сбереги Мега Маркер) 1`] = `
 <div
   className="Order"

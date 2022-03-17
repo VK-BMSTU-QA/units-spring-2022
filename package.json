@@ -55,7 +55,8 @@
   "jest": {
     "collectCoverageFrom": [
       "src/Order/*.{js,jsx,ts,tsx}",
-      "src/utils/sortOrders.ts"
+      "src/utils/sortOrders.ts",
+      "src/utils/getDate.ts"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

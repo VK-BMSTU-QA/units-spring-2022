@@ -1,5 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Order.tsx items (Alihandro Express) 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Alihandro Express
+    </span>
+    <span
+      id="date"
+    >
+      9 декабря, вс, 2018 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      Утиный пластмасса для показ новый год
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан
+    </div>
+    <div
+      className="Order-item"
+      key="2"
+    >
+      Новый стиль один розница яйцо для упаковки форма латекс
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order.tsx items (Alihandro Express) 2`] = `""`;
+
+exports[`Order.tsx no items (Сбереги Мега Маркер) 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Сбереги Мега Маркер
+    </span>
+    <span
+      id="date"
+    >
+      1 мая, пт, 2020 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Order.tsx simple (Сбереги Мега Маркер) 1`] = `
 <div
   className="Order"

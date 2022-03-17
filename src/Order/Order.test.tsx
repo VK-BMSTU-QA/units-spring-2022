@@ -15,8 +15,18 @@ const mocGetData: jest.Mock = jest.fn()
 describe('Order.tsx', () => {
 	let wrapper;
 
-	it('simple (Сбереги Мега Маркер)', () => {
+	it('no items (Сбереги Мега Маркер)', () => {
 		wrapper = shallow(<OrderComponent order={fakeOrders[0]}/>);
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('items (Alihandro Express)', () => {
+		wrapper = shallow(<OrderComponent order={fakeOrders[1]}/>);
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('items (Alihandro Express)', () => {
+		wrapper = shallow(<OrderComponent order={{date: 0}}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 });

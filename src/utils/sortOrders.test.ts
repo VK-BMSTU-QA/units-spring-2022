@@ -50,7 +50,7 @@ describe('sortByItemCount function', () => {
 		const order2 = {
 		};
 		const result = sortByItemCount(order1, order2);
-		expect(result).toBe(undefined);
+		expect(result).toBe(0);
 	});
 	
 });
@@ -90,43 +90,6 @@ describe('sortByDate function', () => {
 	});
 });
 
-describe('sortOrders function', () => {
-	it('Sorts orders using sortByItemCount function', () => {
-		const order1 = {
-			items: ['item1', 'item2', 'item3'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortOrders([order1, order2], sortByItemCount);
-		expect(result).toBe(1);
-	});
-
-	it('Sorts orders using sortByDate function', () => {
-		const now = Date.now();
-		const later = now + 3600 * 1000;
-		
-		const order1 = {date: now};
-		const order2 = {date: later};
-
-		const result = sortOrders([order1, order2], sortByDate);
-		expect(result).toBe(1);
-		
-		const reverseResult = sortOrders([order2, order1], sortByDate);
-		console.log(reverseResult);
-		expect(reverseResult).toBe(0);
-	});
-
-	it('Handles empty orders', () => {
-		const order1 = {};
-		const order2 = {};
-
-		const result = sortOrders([order1, order2], sortByDate);
-		expect(result).toBe(undefined);
-	});
-});
 
 describe('getSortFunction function', () => {
 	test.each([

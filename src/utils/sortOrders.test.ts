@@ -1,7 +1,5 @@
-import { assert } from 'console';
 import {sortByItemCount, sortByDate, sortOrders, getSortFunction, sortTypes} from './sortOrders';
 import {Order} from '../data/fakeOrders';
-import { NewLineKind } from 'typescript';
 
 describe('sortByItemCount function', () => {
 	it('same items count', () => {
@@ -213,4 +211,18 @@ expect(() => {
 	sortOrders(orders, func)
 }).not.toThrow();
 expect(orders).toEqual(expected);
+});
+
+describe('sortOrder empty', () => {
+	it('same items count', () => {
+		const orders: Order[] = [];
+
+		const sortedOrders: Order[] = [];
+
+		expect(() => {
+			sortOrders(orders, sortByDate)
+		}).not.toThrow();
+
+		expect(orders).toEqual(sortedOrders);
+	});
 });

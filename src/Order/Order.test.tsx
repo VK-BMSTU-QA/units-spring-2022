@@ -74,6 +74,5 @@ describe('Order.tsx', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	
 
 });

@@ -186,5 +186,13 @@ describe('sortOrders function', () => {
 
 		expect(orders).toEqual(sortedOrders);
 	});
-});
 
+
+	test.each([
+		[[], sortByDate, undefined],
+		[undefined, sortByItemCount, undefined],
+	])('not valid', (orders, sortFunc, expected) => {
+		expect(sortOrders(orders, sortFunc)).toBe(expected);
+	});
+
+});

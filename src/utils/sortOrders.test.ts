@@ -47,7 +47,7 @@ describe('sortByItemCount function', () => {
 });
 
 describe('sortByItemDate function', () => {
-	it('order has same dates', () => {
+	it('orders have same dates', () => {
 		const order1 = {
 			date: 10,
 		};

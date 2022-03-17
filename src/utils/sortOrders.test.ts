@@ -101,7 +101,7 @@ describe('sortByDate function', () => {
 		expect(result).toBe(0);
 	});
 
-	it('order1 previously', () => {
+	it('order2 previously', () => {
 		const order1 = {
 			date: 300,
 		};
@@ -115,7 +115,7 @@ describe('sortByDate function', () => {
 		expect(result).toBe(-1);
 	});
 
-	it('order2 previously', () => {
+	it('order1 previously', () => {
 		const order1 = {
 			date: 300,
 		};
@@ -143,13 +143,13 @@ describe('sortByDate function', () => {
 
 
 describe('getSortFunction function', () => {
-	it('DATE', () => {
+	it('Date sort type', () => {
 		expect(getSortFunction(sortTypes.DATE)).toBe(sortByDate);
 	});
-	it('Count', () => {
+	it('Count sort type', () => {
 		expect(getSortFunction(sortTypes.COUNT)).toBe(sortByItemCount);
 	});
-	it('unexpected', () => {
+	it('Unexpected sort type', () => {
 		expect(getSortFunction('xxxx')).toBeNull();
 	});
 });

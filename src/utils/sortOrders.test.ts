@@ -8,7 +8,7 @@ describe('sortOrders function', () => {
 		];
 		const ordersCopy = [...orders];
 		sortOrders(orders, sortByItemCount);
-		expect(orders).not.toEqual(ordersCopy);
+		expect(orders).not.toStrictEqual(ordersCopy);
 	});
 
 	it('bad data', () => {
@@ -18,7 +18,7 @@ describe('sortOrders function', () => {
 		];
 		const ordersCopy = [...orders];
 		sortOrders(undefined, sortByItemCount);
-		expect(orders).toEqual(ordersCopy);
+		expect(orders).toStrictEqual(ordersCopy);
 	});
 });
 

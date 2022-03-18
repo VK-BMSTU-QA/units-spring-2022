@@ -43,76 +43,40 @@ describe('sortByDate function', () => {
 		[
 			'same orders` data',
 			{
-				id: 1,
 				date: 1588359900000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1'],
 			},
 			{
-				id: 2,
 				date: 1588359900000,
-				shop: 'Alihandro Express',
-				items: [
-					'2',
-					'1',
-				]
 			},
 			0
 		],
 		[
 			'the first newer than the second',
 			{
-				id: 1,
 				date: 1588359900001,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1'],
 			},
 			{
-				id: 2,
 				date: 1588359900000,
-				shop: 'Alihandro Express',
-				items: [
-					'2',
-					'1',
-				]
 			},
 			-1
 		],
 		[
 			'the second newer than the first',
 			{
-				id: 1,
 				date: 1588359900000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1'],
 			},
 			{
-				id: 2,
 				date: 1588359900001,
-				shop: 'Alihandro Express',
-				items: [
-					'2',
-					'1',
-				]
 			},
 			1
 		],
 		[
 			'orders without data',
 			{
-				id: 1,
 				date: undefined,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1'],
 			},
 			{
-				id: 2,
 				date: undefined,
-				shop: 'Alihandro Express',
-				items: [
-					'2',
-					'1',
-				]
 			},
 			0
 		],

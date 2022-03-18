@@ -44,14 +44,12 @@ describe('getSortFunction function', () => {
 
 describe('sortOrders function', () => {
 	it.each([
-		[[{date: 3}, {date: 2}, {date: 1}], [{date: 3}, {date: 2}, {date: 1}], sortTypes.DATE],
-		[[{date: 1}, {date: 2}, {date: 3}], [{date: 3}, {date: 2}, {date: 1}], sortTypes.DATE],
-		[[], [], sortTypes.DATE],
-		[[{items: ['', '']}, {items: ['', '', '']}, {items: ['']}], [{items: ['']}, {items: ['', '']}, {items: ['', '', '']}], sortTypes.COUNT],
-		[[{items: ['']}, {items: ['', '', '']}, {items: ['', '']}], [{items: ['',]}, {items: ['', '']}, {items: ['', '', '']}], sortTypes.COUNT],
-		[[], [], sortTypes.COUNT],
-	])('subtest sortOrders', (orders1, orders2, type) => {
-		sortOrders(orders1, getSortFunction(type));
-		expect(orders1).toStrictEqual(orders2);
+		[[{date: 2}, {date: 1}], true],
+		[[], false],
+		[null, false],
+	])('subtest sortOrders', (orders, isSortCalled) => {
+                const sortMoc = jest.fn().mockImplementation(() => 0))
+		sortOrders(orders, sortMoc);
+		expect(sortMoc.calls.length).toBe(isSortCalled);
 	});
 });

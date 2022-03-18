@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx items (Alihandro Express) 1`] = `
+exports[`Order.tsx test name: items 1`] = `
 <div
   className="Order"
 >
@@ -14,9 +14,7 @@ exports[`Order.tsx items (Alihandro Express) 1`] = `
     </span>
     <span
       id="date"
-    >
-      9 декабря, вс, 2018 год
-    </span>
+    />
   </div>
   <div
     className="Order-items"
@@ -43,7 +41,7 @@ exports[`Order.tsx items (Alihandro Express) 1`] = `
 </div>
 `;
 
-exports[`Order.tsx no items (Сбереги Мега Маркер) 1`] = `
+exports[`Order.tsx test name: no items 1`] = `
 <div
   className="Order"
 >
@@ -57,9 +55,7 @@ exports[`Order.tsx no items (Сбереги Мега Маркер) 1`] = `
     </span>
     <span
       id="date"
-    >
-      1 мая, пт, 2020 год
-    </span>
+    />
   </div>
   <div
     className="Order-items"
@@ -71,4 +67,39 @@ exports[`Order.tsx no items (Сбереги Мега Маркер) 1`] = `
 </div>
 `;
 
-exports[`Order.tsx null data 1`] = `""`;
+exports[`Order.tsx test name: null data 1`] = `""`;
+
+exports[`Order.tsx test name: one item 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Эльдоградо
+    </span>
+    <span
+      id="date"
+    />
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      Ноутбук Apple MacBook Air 13.3" (MQD32RU/A)
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      Игровая приставка Sony PlayStation 4 Pro 1TB Black (CUH-7208B)
+    </div>
+  </div>
+</div>
+`;

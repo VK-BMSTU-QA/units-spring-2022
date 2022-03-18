@@ -1,32 +1,39 @@
 import React from 'react';
-import 'jest';
 import {shallow, configure} from 'enzyme';
 import {OrderComponent} from './Order';
-import {fakeOrders} from '../data/fakeOrders';
+import {fakeOrders, Order} from '../data/fakeOrders';
 import Adapter from 'enzyme-adapter-react-16';
+import {getDate} from '../utils/getDate';
 
-configure({ adapter: new Adapter() });
-
-const mocGetData: jest.Mock = jest.fn()
-	.mockReturnValue('aa')
-	.mockReturnValue('bb')
-	.mockReturnValue('cc');
+configure({adapter: new Adapter()});
+jest.mock('../utils/getDate');
 
 describe('Order.tsx', () => {
-	let wrapper;
-
-	it('no items (Сбереги Мега Маркер)', () => {
-		wrapper = shallow(<OrderComponent order={fakeOrders[0]}/>);
-		expect(wrapper).toMatchSnapshot();
+	afterEach(() => {
+		getDate.mockClear();
 	});
 
-	it('items (Alihandro Express)', () => {
-		wrapper = shallow(<OrderComponent order={fakeOrders[1]}/>);
+	it.each([
+		['no items', fakeOrders[0]],
+		['items', fakeOrders[1]],
+		['one item', {
+			id: 126,
+			date: 1652585550000,
+			shop: 'Эльдоградо',
+			items: [
+				'Ноутбук Apple MacBook Air 13.3" (MQD32RU/A)',
+				'Игровая приставка Sony PlayStation 4 Pro 1TB Black (CUH-7208B)',
+			]
+		}],
+	])('test name: %s', (testName: string, order: Order) => {
+		const wrapper = shallow(<OrderComponent order={order}/>);
 		expect(wrapper).toMatchSnapshot();
+		expect(getDate).toHaveBeenCalled();
 	});
 
-	it('null data', () => {
-		wrapper = shallow(<OrderComponent order={{date: 0}}/>);
+	it('test name: null data', () => {
+		const wrapper = shallow(<OrderComponent order={{data: 0, id: 1}}/>);
 		expect(wrapper).toMatchSnapshot();
+		expect(getDate).toHaveBeenCalledTimes(0);
 	});
 });

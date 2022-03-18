@@ -27,6 +27,7 @@ describe('Order.tsx', () => {
 		};
 		const index = 0;
 		wrapper = shallow(<OrderComponent key={index} order={order}/>);
+		expect(getDate).toBeCalledTimes(1);
 		expect(wrapper).toMatchSnapshot();
 	});
 	
@@ -39,6 +40,7 @@ describe('Order.tsx', () => {
 		};
 		const index = 0;
 		wrapper = shallow(<OrderComponent key={index} order={order}/>);
+		expect(getDate).toBeCalledTimes(1);
 		expect(wrapper).toMatchSnapshot();
 	});
 	
@@ -47,6 +49,8 @@ describe('Order.tsx', () => {
 		const order: Order = {};
 		const index = 0;
 		wrapper = shallow(<OrderComponent key={index} order={order}/>);
+		expect(getDate).toBeCalledTimes(0);
 		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 });

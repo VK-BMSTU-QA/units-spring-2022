@@ -2,48 +2,22 @@ import { Order } from '../data/fakeOrders';
 import {sortByItemCount, getSortFunction, sortTypes, sortByDate, sortOrders} from './sortOrders';
 
 describe('sortByItemCount function', () => {
-	it('same items count', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
+	test.each([
+		[{items: ['item1', 'item2']}, {items: ['1', '2']}, 0],
+		[{items: ['item1', 'item2']}, {items: ['2']}, 1],
+		[{items: ['item1']}, {items: ['1', '2']}, -1],
+	])('check defualt behaviour', (order1, order2, expected) => {
+		expect(sortByItemCount(order1, order2)).toBe(expected);
 	});
 
-	it('order1 > order2', () => {
-		const order1 = {
-			items: ['item1', 'item2', 'item3'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(1);
+	test.each([
+		[{}, {items: ['1', '2']}, 0],
+		[{items: ['item1', 'item2']}, {}, 0],
+		[{}, {}, 0],
+	])('no items in order', (order1, order2, expected) => {
+		expect(sortByItemCount(order1, order2)).toBe(expected);
 	});
-
-	it('order1 < order2', () => {
-		const order1 = {
-			items: ['item1'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-
+	
 	it('order\'s items are empty', () => {
 		const order1 = {
 			items: [],
@@ -57,75 +31,23 @@ describe('sortByItemCount function', () => {
 
 		expect(result).toBe(-1);
 	});
-
-	it('no items in order', () => {
-		const order1 = {
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
 });
 
 describe('sortByDate function', () => {
-	it('same dates', () => {
-		const order1 = {
-			date: 1588359900000,
-		};
-
-		const order2 = {
-			date: 1588359900000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
+	test.each([
+		[{date: 1588359900000}, {date: 1588359900000}, 0],
+		[{date: 1588359900000}, {date: 1544359900000}, -1],
+		[{date: 1544359900000}, {date: 1588359900000}, 1],
+	])('check defualt behaviour', (order1, order2, expected) => {
+		expect(sortByDate(order1, order2)).toBe(expected);
 	});
 
-	it('order1 > order2', () => {
-		const order1 = {
-			date: 1588359900000,
-		};
-
-		const order2 = {
-			date: 1544359900000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-
-	it('order1 < order2', () => {
-		const order1 = {
-			date: 1544359900000,
-		};
-
-		const order2 = {
-			date: 1588359900000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(1);
-	});
-
-	it('no date in order', () => {
-		const order1 = {
-		};
-
-		const order2 = {
-			date: 1688359900000,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
+	test.each([
+		[{}, {date: 1588359900000}, 0],
+		[{date: 1588359900000}, {}, 0],
+		[{}, {}, 0],
+	])('no date in order', (order1, order2, expected) => {
+		expect(sortByDate(order1, order2)).toBe(expected);
 	});
 });
 

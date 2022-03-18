@@ -193,7 +193,9 @@ describe('sortOrders function', () => {
 	});
 
 	it('no data', () => {
-		sortOrders(undefined, myComparator);
+		const comparator  = jest.fn();
+		sortOrders(undefined, comparator);
+		expect(comparator).toBeCalledTimes(0);
 	});
 });
 

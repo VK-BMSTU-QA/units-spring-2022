@@ -28,7 +28,7 @@ describe('sortByDate function', () => {
 });
 
 describe('getSortFunction function', () => {
-	it('wong type', () => {
+	it('wrong type', () => {
 		const result = getSortFunction('wrong type');
 		expect(result).toBe(null);
 	});

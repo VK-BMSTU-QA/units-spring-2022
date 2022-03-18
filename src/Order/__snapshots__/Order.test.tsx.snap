@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrderComponent component have date 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Lalala
+    </span>
+    <span
+      id="date"
+    >
+      XXXdateXXX
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      1xxx
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      yyy2
+    </div>
+    <div
+      className="Order-item"
+      key="2"
+    >
+      z3z
+    </div>
+  </div>
+</div>
+`;
+
+exports[`OrderComponent component have items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Lalala
+    </span>
+    <span
+      id="date"
+    >
+      XXXdateXXX
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      1xxx
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      yyy2
+    </div>
+    <div
+      className="Order-item"
+      key="2"
+    >
+      z3z
+    </div>
+  </div>
+</div>
+`;
+
+exports[`OrderComponent component have shop 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Lalala
+    </span>
+    <span
+      id="date"
+    >
+      XXXdateXXX
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      1xxx
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      yyy2
+    </div>
+    <div
+      className="Order-item"
+      key="2"
+    >
+      z3z
+    </div>
+  </div>
+</div>
+`;
+
+exports[`OrderComponent component no items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Lalala
+    </span>
+    <span
+      id="date"
+    >
+      XXXdateXXX
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`OrderComponent component null render 1`] = `""`;

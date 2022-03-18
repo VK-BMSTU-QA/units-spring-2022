@@ -21,6 +21,11 @@ describe('Order.tsx', () => {
 		const order = fakeOrders[1];
 		const wrapper = shallow(<OrderComponent order={order}/>);
 		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('use getDate function while render order with items', () => {
+		const order = fakeOrders[1];
+		const wrapper = shallow(<OrderComponent order={order}/>);
 		expect(getDate).toBeCalled();
 	});
 
@@ -30,6 +35,13 @@ describe('Order.tsx', () => {
 		const wrapper = shallow(<OrderComponent
 			order={order}/>);
 		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('use getDate function while render order without items', () => {
+		const order = fakeOrders[0];
+
+		const wrapper = shallow(<OrderComponent
+			order={order}/>);
 		expect(getDate).toBeCalled();
 	});
 

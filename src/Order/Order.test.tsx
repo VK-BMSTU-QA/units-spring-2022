@@ -15,27 +15,36 @@ afterEach(() => {
 	jest.clearAllMocks();
 });
 
-describe.each([ [{
-	date: 2,
-	id: 3,
-	items: ['d', 'k'],
-	shop: 'dore',
-}, 'with items'],
-[{
-	date: 2,
-	id: 3,
-	items: [],
-	shop: 'dore',
-}, 'without items'],
-[{
-	date: 2,
-	items: ['d', 'k'],
-	shop: 'dore',
-}, 'no id'],
-]) ( 'with call getDate', (a, type: string)=> {
-
+describe.each([
+	[
+		{
+			date: 2,
+			id: 3,
+			items: ['d', 'k'],
+			shop: 'dore',
+		},
+		'with items',
+	],
+	[
+		{
+			date: 2,
+			id: 3,
+			items: [],
+			shop: 'dore',
+		},
+		'without items',
+	],
+	[
+		{
+			date: 2,
+			items: ['d', 'k'],
+			shop: 'dore',
+		},
+		'no id',
+	],
+])('with call getDate', (a, type: string) => {
 	it(type + ' : shallow', () => {
-		const wrapper = shallow(<OrderComponent order={a}/>);
+		const wrapper = shallow(<OrderComponent order={a} />);
 
 		expect(getDate).toBeCalledTimes(1);
 		expect(getDate).toBeCalledWith(a.date);
@@ -43,7 +52,7 @@ describe.each([ [{
 	});
 
 	it(type + ' : mount', () => {
-		const wrapper = mount(<OrderComponent order={a}/>);
+		const wrapper = mount(<OrderComponent order={a} />);
 
 		expect(getDate).toBeCalledTimes(1);
 		expect(getDate).toBeCalledWith(a.date);
@@ -51,7 +60,7 @@ describe.each([ [{
 	});
 
 	it(type + ' : render', () => {
-		const wrapper = render(<OrderComponent order={a}/>);
+		const wrapper = render(<OrderComponent order={a} />);
 
 		expect(getDate).toBeCalledTimes(1);
 		expect(getDate).toBeCalledWith(a.date);
@@ -60,33 +69,38 @@ describe.each([ [{
 });
 
 describe.each([
-	[{
-		id: 3,
-		items: ['d', 'k'],
-		shop: 'dore',
-	}, 'no date'],
-	[{
-		id: 3,
-		date: 2,
-		items: ['d', 'k'],
-	}, 'no shop'],
-]) ( 'without call getDate', (a, type: string)=> {
-
+	[
+		{
+			id: 3,
+			items: ['d', 'k'],
+			shop: 'dore',
+		},
+		'no date',
+	],
+	[
+		{
+			id: 3,
+			date: 2,
+			items: ['d', 'k'],
+		},
+		'no shop',
+	],
+])('without call getDate', (a, type: string) => {
 	it(type + ' : shallow', () => {
-		const wrapper = shallow(<OrderComponent order={a}/>);
+		const wrapper = shallow(<OrderComponent order={a} />);
 
 		expect(getDate).toBeCalledTimes(0);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it(type + ' : mount', () => {
-		const wrapper = mount(<OrderComponent order={a}/>);
+		const wrapper = mount(<OrderComponent order={a} />);
 
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it(type + ' : render', () => {
-		const wrapper = render(<OrderComponent order={a}/>);
+		const wrapper = render(<OrderComponent order={a} />);
 
 		expect(getDate).toBeCalledTimes(0);
 		expect(wrapper).toMatchSnapshot();

@@ -1,28 +1,34 @@
-import {sortByItemCount, sortByDate, sortOrders, sortTypes, getSortFunction} from './sortOrders';
-import {Order} from '../data/fakeOrders';
+import {
+	sortByItemCount,
+	sortByDate,
+	sortOrders,
+	sortTypes,
+	getSortFunction,
+} from './sortOrders';
+import { Order } from '../data/fakeOrders';
 
 test.each([
-	[{items: ['1', '2']}, 	{items: ['1', '2']}, 	0],
-	[{items: ['1', '2']}, 	{items: ['1']}, 		1],
-	[{items: ['1']}, 		{items: ['1', '2']}, 	-1],
-	[{},					{items: ['1', '2']}, 	0],
+	[{ items: ['1', '2'] }, { items: ['1', '2'] }, 0],
+	[{ items: ['1', '2'] }, { items: ['1'] }, 1],
+	[{ items: ['1'] }, { items: ['1', '2'] }, -1],
+	[{}, { items: ['1', '2'] }, 0],
 ])('sortByItemCount function', (a, b, expected) => {
 	expect(sortByItemCount(a, b)).toBe(expected);
 });
 
 test.each([
-	[{date: 1}, {date: 1}, 	0],
-	[{date: 2}, {date: 1}, 	-1],
-	[{date: 1}, {date: 2}, 	1],
-	[{},		{date: 1}, 	0],
+	[{ date: 1 }, { date: 1 }, 0],
+	[{ date: 2 }, { date: 1 }, -1],
+	[{ date: 1 }, { date: 2 }, 1],
+	[{}, { date: 1 }, 0],
 ])('sortByDate function', (a, b, expected) => {
 	expect(sortByDate(a, b)).toBe(expected);
 });
 
 test.each([
-	[sortTypes.DATE, 	sortByDate],
-	[sortTypes.COUNT, 	sortByItemCount],
-	['1', 				null],
+	[sortTypes.DATE, sortByDate],
+	[sortTypes.COUNT, sortByItemCount],
+	['1', null],
 ])('getSortFunction function', (a, expected) => {
 	expect(getSortFunction(a)).toBe(expected);
 });
@@ -40,7 +46,7 @@ test('order by date', () => {
 		{
 			id: 3,
 			date: 4,
-		}
+		},
 	];
 
 	const sorted_orders = [
@@ -55,7 +61,7 @@ test('order by date', () => {
 		{
 			id: 2,
 			date: 1,
-		}
+		},
 	];
 
 	expect(() => {
@@ -77,7 +83,6 @@ test('empty orders', () => {
 	expect(orders).toStrictEqual(sorted_orders);
 });
 
-
 test('order by items', () => {
 	const orders = [
 		{
@@ -91,7 +96,7 @@ test('order by items', () => {
 		{
 			id: 3,
 			items: ['1'],
-		}
+		},
 	];
 
 	const sorted_orders = [
@@ -106,7 +111,7 @@ test('order by items', () => {
 		{
 			id: 2,
 			items: ['1', '2', '3'],
-		}
+		},
 	];
 
 	expect(() => {

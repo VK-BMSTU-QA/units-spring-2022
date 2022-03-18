@@ -20,7 +20,7 @@ describe('OrderComponent function', () => {
 		const testOrder = {
 		};
 		const wrapper = shallow(<OrderComponent order={testOrder}/>);
-		expect(wrapper.getElement()).toBe(null);
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('!order.shop or !order.date', () => {
@@ -28,7 +28,7 @@ describe('OrderComponent function', () => {
 			id: 1
 		};
 		const wrapper = shallow(<OrderComponent order={testOrder}/>);
-		expect(wrapper.getElement()).toBe(null);
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('!order.items', () => {

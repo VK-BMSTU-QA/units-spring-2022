@@ -16,7 +16,7 @@ describe('sortByItemCount function', () => {
 		{first: {items: ['item1', 'item2']}, second: {items: ['1', '2']}, expected: 0},
 		{first: {items: ['item1', 'item2']}, second: {items: ['1', '2', '3']}, expected: -1},
 		{first: {items: ['item1', 'item2', 'item3']}, second: {items: ['1', '2']}, expected: 1},
-	])('sort items with orders', ({first, second, expected}) => {
+	])('sort orders with items', ({first, second, expected}) => {
 		expect(sortByItemCount(first, second)).toBe(expected);
 	});
 
@@ -24,11 +24,11 @@ describe('sortByItemCount function', () => {
 		{first: {date: 1588359900000}, second: {items: ['1', '2']}, expected: 0},
 		{first: {items: ['item1', 'item2']}, second: {date: 1588359900000}, expected: 0},
 		{first: {date: 1588359900000}, second: {date: 1588359900000}, expected: 0},
-	])('sort items without orders', ({first, second, expected}) => {
+	])('sort orders without items', ({first, second, expected}) => {
 		expect(sortByItemCount(first, second)).toBe(expected);
 	});
 
-	it('sort items with empty orders', () => {
+	it('sort orders with empty items', () => {
 		const order1 = {};
 		const order2 = {};
 
@@ -53,7 +53,7 @@ describe('sortByDate function', () => {
 		expect(sortByDate(first, second)).toBe(expected);
 	});
 
-	it('sort items with empty orders', () => {
+	it('sort orders with empty items', () => {
 		const order1 = {};
 		const order2 = {};
 

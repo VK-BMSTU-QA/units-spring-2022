@@ -50,6 +50,6 @@ describe('sortOrders function', () => {
 	])('subtest sortOrders', (orders, isSortCalled) => {
 		const sortMoc = jest.fn().mockImplementation(() => 0);
 		sortOrders(orders, sortMoc);
-		expect(sortMoc.mock.calls.length).toBe(isSortCalled);
+		expect(Boolean(sortMoc.mock.calls.length)).toBe(isSortCalled);
 	});
 });

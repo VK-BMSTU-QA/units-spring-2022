@@ -29,7 +29,7 @@ describe('Order.tsx', () => {
 			items: [],
 		};
 		const wrapper = shallow(<OrderComponent order={order}/>);
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('Renders empty order', () => {

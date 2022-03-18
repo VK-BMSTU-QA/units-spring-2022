@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx Handles incomplete order 1`] = `""`;
-
 exports[`Order.tsx Handles null order 1`] = `""`;
 
 exports[`Order.tsx Renders correct order 1`] = `

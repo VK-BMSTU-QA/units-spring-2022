@@ -226,3 +226,39 @@ describe('sortOrder empty', () => {
 		expect(orders).toEqual(sortedOrders);
 	});
 });
+
+it('stable sort', () => {
+	const orders  = [ 
+		{
+			id: 2,
+			date: 2008,
+		},
+		{
+			id: 1,
+			date: 100,
+		},
+		{
+			id: 1,
+			date: 2008,
+		}
+	];
+	const ordersSorted  = [ 
+		{
+			id: 2,
+			date: 2008,
+		},
+		{
+			id: 1,
+			date: 2008,
+		}, 
+		{
+			id: 1,
+			date: 100,
+		},
+		
+	];
+
+	sortOrders(orders, sortByDate);
+
+	expect(orders).toEqual(ordersSorted);
+});

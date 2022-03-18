@@ -156,7 +156,8 @@ describe('sortOrders function', () => {
 			{items: ['1']},
 		];
 
-		const result = sortOrders(orders, sortByItemCount);
+		const sortFunc = jest.fn();
+		const result = sortOrders(orders, sortFunc);
 
 		expect(result).toBe(undefined);
 	});
@@ -168,7 +169,8 @@ describe('sortOrders function', () => {
 			{date: 2},
 		];
 
-		const result = sortOrders(orders, sortByDate);
+		const sortFunc = jest.fn();
+		const result = sortOrders(orders, sortFunc);
 
 		expect(result).toBe(undefined);
 	});

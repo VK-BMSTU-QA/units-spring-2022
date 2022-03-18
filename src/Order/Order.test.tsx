@@ -39,8 +39,8 @@ describe('Order component', () => {
 	});
 
 	test.each([
-		{shop: undefined},
-		{date: undefined},
+		{id: 1, date: 12, shop: undefined, items: ['1', '2']},
+		{id: 1, date: undefined, shop: 'Сбереги Мега Маркер', items: ['1', '2']},
 	])('OrderComponent({order: $order})', (order) => {
 		const orderComponent = OrderComponent({order: order}); 
 		expect(orderComponent).toBeNull();

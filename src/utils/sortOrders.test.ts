@@ -335,5 +335,24 @@ describe('sortOrders function', () => {
 
 		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
 	});
+	it('sort the same count of orders', () => {
+		const fakeOrders: Order[] = [
+			{
+				id: 1,
+				date: 1544356800001,
+				shop: 'Alihandro Express',
+				items: ['1', '2',]
+			},
+			{
+				id: 1,
+				date: 1544356800001,
+				shop: 'Alihandro Express',
+				items: ['1', '2',]
+			},];
+		const sortedFakeOrders: Order[] = fakeOrders;
+		sortOrders(fakeOrders, sortByItemCount);
+
+		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
+	});
 });
 

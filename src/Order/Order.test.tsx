@@ -10,7 +10,7 @@ configure({ adapter: new Adapter() });
 
 describe('Order.tsx', () => {
 	let wrapper;
-	it('order', () => {
+	it('Casual order', () => {
 		getDate.mockReturnValue('1 января, чт, 1970 год');
 		const order: Order = {
 			id: 1,
@@ -48,6 +48,17 @@ describe('Order.tsx', () => {
 			shop: 'MegaShop',
 			items: ['Бургер', 'Кола']
 		};
+	
+		const key = 0;
+	
+		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
+
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	it('no order', ()=>{
+		getDate.mockReturnValue(null);
+		const order: Order = {};
 	
 		const key = 0;
 	

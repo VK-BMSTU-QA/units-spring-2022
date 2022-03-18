@@ -1,36 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx no date 1`] = `""`;
-
-exports[`Order.tsx no items 1`] = `
-<div
-  className="Order"
->
-  <div
-    className="Order-header"
-  >
-    <span
-      className="Order-shop"
-    >
-      MegaShop
-    </span>
-    <span
-      id="date"
-    >
-      1 января, чт, 1970 год
-    </span>
-  </div>
-  <div
-    className="Order-items"
-  >
-    <div>
-      Заказ пуст...
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Order.tsx order 1`] = `
+exports[`Order.tsx Casual order 1`] = `
 <div
   className="Order"
 >
@@ -66,3 +36,35 @@ exports[`Order.tsx order 1`] = `
   </div>
 </div>
 `;
+
+exports[`Order.tsx no date 1`] = `""`;
+
+exports[`Order.tsx no items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      MegaShop
+    </span>
+    <span
+      id="date"
+    >
+      1 января, чт, 1970 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order.tsx no order 1`] = `""`;

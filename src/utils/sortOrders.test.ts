@@ -1,9 +1,15 @@
-import {getSortFunction, sortByDate, sortByItemCount, sortOrders, sortTypes} from './sortOrders';
-import {Order} from '../data/fakeOrders';
+import {
+	getSortFunction,
+	sortByDate,
+	sortByItemCount,
+	sortOrders,
+	sortTypes,
+} from './sortOrders';
+import { Order } from '../data/fakeOrders';
 
 const sortingFunc = jest.fn();
 
-describe('getSortFunction', ()=> {
+describe('getSortFunction', () => {
 	it('Count', () => {
 		const sort = getSortFunction(sortTypes.COUNT);
 		expect(sort).toBe(sortByItemCount);
@@ -12,14 +18,13 @@ describe('getSortFunction', ()=> {
 		const sort = getSortFunction('WRONG');
 		expect(sort).toBe(null);
 	});
+
+	it('sortByDate', () => {
+		expect(getSortFunction(sortTypes.DATE)).toBe(sortByDate);
+	});
 });
 
-
-
-
 describe('sortOrders', () => {
-
-
 	it('sorting empty array', () => {
 		const orders: Order[] = [];
 
@@ -27,25 +32,39 @@ describe('sortOrders', () => {
 		expect(sortingFunc).toBeCalledTimes(0);
 	});
 	it('sorting array of 3', () => {
-		const orders: Order[] = [
+		const sortedOrders: Order[] = [
 			{
-				date: 10
+				id: 1,
+				date: 30,
 			},
 			{
-				date: 20
+				id: 2,
+				date: 20,
 			},
 			{
-				date: 30
-			}];
+				id: 3,
+				date: 10,
+			},
+		];
+		const unsortedOrders: Order[] = [
+			{
+				id: 3,
+				date: 10,
+			},
+			{
+				id: 2,
+				date: 20,
+			},
+			{
+				id: 1,
+				date: 30,
+			},
+		];
 
-		sortOrders(orders, sortingFunc);
-		expect(sortingFunc).toBeCalledTimes(2);
+		sortOrders(unsortedOrders, sortByDate);
+		expect(unsortedOrders).toStrictEqual(sortedOrders);
 	});
 
-	it('sortByDate', () => {
-		expect( getSortFunction(sortTypes.DATE)).toBe(sortByDate);
-	});
-	
 	it('test orders undefined array', () => {
 		expect(sortOrders(undefined, sortingFunc)).toBe(undefined);
 	});
@@ -55,138 +74,130 @@ describe('sortByItemCount', () => {
 	test.each([
 		{
 			a: {
-				items: ['1', '2']
-			}, 
-			
+				items: ['1', '2'],
+			},
+
 			b: {
-				items: ['a']				
-			}, 
-			
-			expected: 1
+				items: ['a'],
+			},
+
+			expected: 1,
 		},
 		{
 			a: {
-				items: ['a', 'b', 'c']
-			}, 
-			
+				items: ['a', 'b', 'c'],
+			},
+
 			b: {
-				items: ['1', '2', '3']
-			}, 
-			
-			expected: 0
+				items: ['1', '2', '3'],
+			},
+
+			expected: 0,
 		},
 		{
 			a: {
-				items: ['a']
-			}, 
-			
+				items: ['a'],
+			},
+
 			b: {
-				items: ['1', '2']
-			}, 
-			
-			expected: -1
+				items: ['1', '2'],
+			},
+
+			expected: -1,
 		},
 		{
 			a: {
-				items: []
-			}, 
-			
+				items: [],
+			},
+
 			b: {
-				items: []
-			}, 
-			
-			expected: 0
+				items: [],
+			},
+
+			expected: 0,
 		},
 		{
 			a: {
-				items: undefined
-			}, 
-			
+				items: undefined,
+			},
+
 			b: {
-				items: undefined
-			}, 
-			
-			expected: 0
+				items: undefined,
+			},
+
+			expected: 0,
 		},
 		{
 			a: undefined,
 			b: undefined,
-			expected: 0
+			expected: 0,
 		},
-		
-	])('.sortByItemCount(%s, %s)', ({a, b, expected}) => {
+	])('.sortByItemCount(%s, %s)', ({ a, b, expected }) => {
 		expect(sortByItemCount(a, b)).toBe(expected);
 	});
 });
 
-
 describe('sortByDateCount function', () => {
 	test.each([
 		{
-			
 			a: {
-				date: 15000
-			}, 
-			
+				date: 15000,
+			},
+
 			b: {
-				date: 15000
-			}, 
-			
-			expected: 0
-		}, 
+				date: 15000,
+			},
+
+			expected: 0,
+		},
 		{
-			
 			a: {
-				date: 100
-			}, 
-			
+				date: 100,
+			},
+
 			b: {
-				date: 20
-			}, 
-			
-			expected: -1
-		}, 
+				date: 20,
+			},
+
+			expected: -1,
+		},
 		{
-			
 			a: {
-				date: -1
-			}, 
-			
+				date: -1,
+			},
+
 			b: {
-				date: 0
-			}, 
-			
-			expected: 0
-		}, 
+				date: 0,
+			},
+
+			expected: 0,
+		},
 		{
-			
 			a: {
-				date: undefined
-			}, 
-			
+				date: undefined,
+			},
+
 			b: {
-				date: undefined
-			}, 
-			
-			expected: 0
-		}, 
+				date: undefined,
+			},
+
+			expected: 0,
+		},
 		{
-			
 			a: {
-				date: 1
-			}, 
+				date: 1,
+			},
 			b: {
-				date: 100
-			}, 
-			expected: 1
-		}, 
+				date: 100,
+			},
+			expected: 1,
+		},
 		{
-			
 			a: undefined,
 			b: undefined,
-			expected: 0
-		}, 
-	])('.sortByDate(%i, %i)', ({a, b, expected}) => {
-		expect( sortByDate(a, b)).toBe(expected);
+			expected: 0,
+		},
+	])('.sortByDate(%i, %i)', ({ a, b, expected }) => {
+		expect(sortByDate(a, b)).toBe(expected);
 	});
 });

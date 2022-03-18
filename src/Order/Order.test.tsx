@@ -23,20 +23,6 @@ describe('Order.tsx', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('order with dict items', () => {
-		const order = {
-			id: 100,
-			date: 1647541075867,
-			shop: 'VK )',
-			items: {
-				apple_pen: 'Pencil',
-				minecraft: 'Mine',
-			},
-		};
-		const wrapper = shallow(<OrderComponent order={order}/>);
-		expect(wrapper).toMatchSnapshot();
-	});
-
 	it('Handles incomplete order', () => {
 		const order = {
 			id: 100,

@@ -157,9 +157,9 @@ describe('sortOrders function', () => {
 		];
 
 		const sortFunc = jest.fn();
-		const result = sortOrders(orders, sortFunc);
+		sortOrders(orders, sortFunc);
 
-		expect(result).toBe(undefined);
+		expect(sortFunc).toBeCalled();
 	});
 
 	it('sort by date', () => {
@@ -170,9 +170,9 @@ describe('sortOrders function', () => {
 		];
 
 		const sortFunc = jest.fn();
-		const result = sortOrders(orders, sortFunc);
+		sortOrders(orders, sortFunc);
 
-		expect(result).toBe(undefined);
+		expect(sortFunc).toBeCalled();
 	});
 
 	it('bad date', () => {

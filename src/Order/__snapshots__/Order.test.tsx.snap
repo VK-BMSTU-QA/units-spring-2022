@@ -12,12 +12,12 @@ exports[`Order.tsx Renders correct order 1`] = `
     <span
       className="Order-shop"
     >
-      SHOP
+      Alihandro Express
     </span>
     <span
       id="date"
     >
-      17 марта, чт, 2022 год
+      18 марта, чт, 2022 год
     </span>
   </div>
   <div
@@ -27,13 +27,19 @@ exports[`Order.tsx Renders correct order 1`] = `
       className="Order-item"
       key="0"
     >
-      айфончик
+      Утиный пластмасса для показ новый год
     </div>
     <div
       className="Order-item"
       key="1"
     >
-      гэлакси телефон
+      Курица из нержавеющей стали, утка, гусь, голубь, питьевой фонтан
+    </div>
+    <div
+      className="Order-item"
+      key="2"
+    >
+      Новый стиль один розница яйцо для упаковки форма латекс
     </div>
   </div>
 </div>
@@ -49,12 +55,12 @@ exports[`Order.tsx Renders empty order 1`] = `
     <span
       className="Order-shop"
     >
-      AZOT
+      Сбереги Мега Маркер
     </span>
     <span
       id="date"
     >
-      17 марта, чт, 2022 год
+      18 марта, чт, 2022 год
     </span>
   </div>
   <div
@@ -82,7 +88,7 @@ exports[`Order.tsx Renders order with items: null 1`] = `
     <span
       id="date"
     >
-      17 марта, чт, 2022 год
+      18 марта, чт, 2022 год
     </span>
   </div>
   <div

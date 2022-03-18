@@ -49,7 +49,7 @@ describe('sortByDate function', () => {
 	test.each([
 		{first: {date: 1588359900000}, second: {items: ['1', '2']}, expected: 0},
 		{first: {items: ['item1', 'item2']}, second: {date: 1588359900000}, expected: 0},
-	])('sort items without date', ({first, second, expected}) => {
+	])('sort orders without date', ({first, second, expected}) => {
 		expect(sortByDate(first, second)).toBe(expected);
 	});
 
@@ -70,7 +70,7 @@ describe('sortOrders function', () => {
 		expect(sortOrders(orders, sortFunction)).toBe(expected);
 	});
 
-	it('sort items by date', () => {
+	it('sort orders by date', () => {
 		const orders = [{date:1548359900000},{date:1588359900000}];
 		const sorted = [{date:1588359900000},{date:1548359900000}];
 

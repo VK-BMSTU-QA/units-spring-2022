@@ -16,7 +16,7 @@ describe('Order.tsx', () => {
 	});
 
 	afterAll(() => {
-		jest.resetModules();
+		jest.clearAllMocks();
 	});
 
 	it('order as null', () => {
@@ -34,7 +34,7 @@ describe('Order.tsx', () => {
 	});
 
 	it('order with null items', () => {
-		const wrapper = shallow(<OrderComponent order={{...fakeOrders[0], items: []}}/>);
+		const wrapper = shallow(<OrderComponent order={{...fakeOrders[0], items: null}}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
@@ -48,7 +48,7 @@ describe('Order.tsx', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('order with empty items', () => {
+	it('valid order', () => {
 		const wrapper = shallow(<OrderComponent order={fakeOrders[1]}/>);
 		expect(wrapper).toMatchSnapshot();
 	});

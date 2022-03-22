@@ -3,7 +3,7 @@ import React from 'react';
 import { OrderComponent } from './Order';
 import {getDate} from '../utils/getDate';
 import {fakeOrders} from '../data/fakeOrders';
-import {shallow, configure} from 'enzyme';
+import {shallow, configure, mount} from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -49,8 +49,9 @@ describe('Order.tsx', () => {
 				items:[1, 2]
 			},
 		])('OrderComponent({order: %s})', (order) => {
-			const orderComponent = OrderComponent({order: order}); 
-			expect(orderComponent).toBeNull();
+			const wrapper = shallow(<OrderComponent order={order}/>);
+
+			expect(wrapper).toMatchSnapshot();
 		});
 	
 		

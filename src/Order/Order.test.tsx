@@ -39,7 +39,7 @@ describe('Order.tsx', () => {
 		{id: 0, date: 5, shop: undefined, items:[]},
 		{id: 0, date: undefined, shop: 'sem 17.03', items:[]},
 	])('Проверка невалидного компонента OrderComponent({order: %s})', (order) => {
-		const orderComponent = OrderComponent({order: order}); 
-		expect(orderComponent).toBeNull();
+		const wrapper = shallow(<OrderComponent order = {order} />); 
+		expect(wrapper.find('.Order')).toHaveLength(0);
 	});
 });

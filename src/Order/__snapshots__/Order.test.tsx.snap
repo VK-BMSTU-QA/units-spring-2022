@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx Order.tsx no items 1`] = `
+exports[`Order.tsx Order.tsx fakeOrders[0] - no items in the order - expected empty order 1`] = `
 <div
   className="Order"
 >
@@ -28,7 +28,7 @@ exports[`Order.tsx Order.tsx no items 1`] = `
 </div>
 `;
 
-exports[`Order.tsx Order.tsx with items 1`] = `
+exports[`Order.tsx Order.tsx fakeOrders[1] - order with items - expect items on the page 1`] = `
 <div
   className="Order"
 >

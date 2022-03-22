@@ -16,25 +16,27 @@ describe('sortByItemCount function', () => {
 		expect(result).toBe(0);
 	});
 });
-test.each([
-	[['item1', 'item2'], ['1', '2'],  0],
-	[['item1', 'item2'], ['1'],  1],
-	[['item1'], ['2'],  0],
-	[[], ['2'],  -1],
-	[[], [],  0],
-	[NaN, NaN, 0],
-])('sortByItemCount(%i, %i, %i)', (a, b, expected) => {
-	const order1 = {
-		items: a,
-	};
-
-	const order2 = {
-		items: b,
-	};
-	const res = sortByItemCount(order1, order2);
-	expect(res).toEqual(expected);
-
+describe("simple tests sortByItemCount on equal, less, more and empty cases ", () => {
+	test.each([
+		[['item1', 'item2'], ['1', '2'],  0],
+		[['item1', 'item2'], ['1'],  1],
+		[['item1'], ['2'],  0],
+		[[], ['2'],  -1],
+		[[], [],  0],
+		[NaN, NaN, 0],
+	])('sortByItemCount(%i, %i, %i)', (a, b, expected) => {
+		const order1 = {
+			items: a,
+		};
+	
+		const order2 = {
+			items: b,
+		};
+		const res = sortByItemCount(order1, order2);
+		expect(res).toEqual(expected);
+	});
 });
+
 
 describe('sortByItemCount invalid', () => {
 	it('all Nan', () => {
@@ -65,25 +67,27 @@ describe('sortByItemCount invalid', () => {
 	});
 });
 
-test.each([
-	[[2000], [2001],  1],
-	[[200], [100],  -1],
-	[[2022], [2022],  0],
-	[[], [],  0],
-	[[NaN], [NaN],  0],
-	[NaN, NaN,  0],
+describe("simple tests sortByDate on equal, less, more, empty and NaN cases ", () => {
+	test.each([
+		[[2000], [2001],  1],
+		[[200], [100],  -1],
+		[[2022], [2022],  0],
+		[[], [],  0],
+		[[NaN], [NaN],  0],
+		[NaN, NaN,  0],
 
-])('sortByDate(%i, %i, %i)', (a, b, expected) => {
-	const order1 = {
-		date: a,
-	};
+	])('sortByDate(%i, %i, %i)', (a, b, expected) => {
+		const order1 = {
+			date: a,
+		};
 
-	const order2 = {
-		date: b,
-	};
-	const res = sortByDate(order1, order2);
-	expect(res).toEqual(expected);
+		const order2 = {
+			date: b,
+		};
+		const res = sortByDate(order1, order2);
+		expect(res).toEqual(expected);
 
+	});
 });
 
 describe('sortByDate invalid', () => {
@@ -115,16 +119,18 @@ describe('sortByDate invalid', () => {
 	});
 });
 
-test.each([
-	[NaN, null],
-	[sortTypes.DATE, sortByDate],
-	[sortTypes.COUNT, sortByItemCount],
-	['nothing else', null],
-])('getSortFunction(%i)', (type, expected) => {
+describe("simple tests getSortFunction with supported comparators and null values", () => {
+	test.each([
+		[NaN, null],
+		[sortTypes.DATE, sortByDate],
+		[sortTypes.COUNT, sortByItemCount],
+		['nothing else', null],
+	])('getSortFunction(%i)', (type, expected) => {
 
-	const res = getSortFunction(type);
-	expect(res).toEqual(expected);
+		const res = getSortFunction(type);
+		expect(res).toEqual(expected);
 
+	});
 });
 
 test.each([

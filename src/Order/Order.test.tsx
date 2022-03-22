@@ -19,7 +19,7 @@ describe('Order.tsx', () => {
 			jest.clearAllMocks();
 		});
 	
-		it('no items', () => {
+		it('fakeOrders[0] - no items in the order - expected empty order', () => {
 			const order = fakeOrders[0];
 	
 			const wrapper = shallow(<OrderComponent
@@ -28,7 +28,7 @@ describe('Order.tsx', () => {
 			expect(getDate).toBeCalled();
 		});
 		
-		it('with items', () => {
+		it('fakeOrders[1] - order with items - expect items on the page', () => {
 			const order = fakeOrders[1];
 
 			const wrapper = shallow(<OrderComponent order={order}/>);

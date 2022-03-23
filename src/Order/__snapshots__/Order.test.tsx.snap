@@ -43,8 +43,6 @@ exports[`Order.tsx all info 1`] = `
 </div>
 `;
 
-exports[`Order.tsx bad order info 1`] = `""`;
-
 exports[`Order.tsx empty item list 1`] = `
 <div
   className="Order"

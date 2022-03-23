@@ -31,7 +31,7 @@ describe('Order.tsx', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('bad order info', () => {
+	it('no shop info', () => {
 		const someOrder = {
 			id: 123,
 			date: 1544356800000,
@@ -42,7 +42,7 @@ describe('Order.tsx', () => {
 			]
 		};
 		const wrapper = shallow(<OrderComponent order={someOrder}/>);
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('empty item list', () => {

@@ -1,4 +1,11 @@
 import {getSortFunction, sortByDate, sortByItemCount, sortOrders, sortTypes} from './sortOrders';
+import {Order} from '../data/fakeOrders';
+
+type SortsTestData = {
+	order1: Order;
+	order2: Order;
+	expected: number;
+};
 
 describe('sortOrders function', () => {
 	it('count sort type', () => {
@@ -6,19 +13,15 @@ describe('sortOrders function', () => {
 			{ items: ['item1', 'item2', 'item3'] },
 			{ items: ['1', '2'] },
 		];
-		const ordersCopy = [...orders];
-		sortOrders(orders, sortByItemCount);
-		expect(orders).not.toStrictEqual(ordersCopy);
+		const sortFunc = jest.fn();
+		sortOrders(orders, sortFunc);
+		expect(sortFunc).toBeCalled();
 	});
 
-	it('bad data', () => {
-		const orders = [
-			{ items: ['item1', 'item2', 'item3'] },
-			{ items: ['1', '2'] },
-		];
-		const ordersCopy = [...orders];
+	it('undefined input', () => {
+		const sortFunc = jest.fn();
 		sortOrders(undefined, sortByItemCount);
-		expect(orders).toStrictEqual(ordersCopy);
+		expect(sortFunc).not.toBeCalled();
 	});
 });
 
@@ -40,133 +43,29 @@ describe('getSortFunction function', () => {
 });
 
 describe('sortByItemCount function', () => {
-	it('same items count', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('first order is bigger', () => {
-		const order1 = {
-			items: ['item1', 'item2', 'item3'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(1);
-	});
-
-	it('second order is bigger', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1', '2', '3'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-
-	it('null data', () => {
-		const order2 = {
-			items: ['1', '2', '3'],
-		};
-
-		const result = sortByItemCount(null, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('bad input data', () => {
-		const order1 = {};
-
-		const order2 = {
-			items: ['1', '2', '3'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
+	const table = [
+		['same items count', { order1: { items: ['item1', 'item2'] }, order2: { items: ['1', '2'] }, expected: 0} as SortsTestData],
+		['first order is bigger', { order1: { items: ['item1', 'item2', 'item3'] }, order2: { items: ['1', '2'] }, expected: 1} as SortsTestData],
+		['second order is bigger', { order1: { items: ['item1', 'item2'] }, order2: { items: ['1', '2', '3'] }, expected: -1} as SortsTestData],
+		['undefined data', { order1: undefined as unknown as Order, order2: { items: ['1', '2'] }, expected: 0} as SortsTestData],
+		['items in order is undefined', { order1: { /* items is undefined */ }, order2: { items: ['1', '2'] }, expected: 0} as SortsTestData],
+	];
+	it.each(table)('%s', (testName, testData) => {
+		const typedTestData = testData as SortsTestData;
+		expect(sortByItemCount(typedTestData.order1, typedTestData.order2)).toBe(typedTestData.expected);
 	});
 });
 
 describe('sortByDate function', () => {
-	it('same date', () => {
-		const order1 = {
-			date: 123,
-		};
-
-		const order2 = {
-			date: 123,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('first date is bigger', () => {
-		const order1 = {
-			date: 256,
-		};
-
-		const order2 = {
-			date: 123,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(-1);
-	});
-
-	it('second date is bigger', () => {
-		const order1 = {
-			date: 123,
-		};
-
-		const order2 = {
-			date: 256,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(1);
-	});
-
-	it('null data', () => {
-		const order2 = {
-			items: ['1', '2', '3'],
-		};
-
-		const result = sortByDate(null, order2);
-
-		expect(result).toBe(0);
-	});
-
-	it('bad input data', () => {
-		const order1 = {};
-
-		const order2 = {
-			date: 123,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
+	const table = [
+		['same date', { order1: { date: 123 }, order2: { date: 123 }, expected: 0} as SortsTestData],
+		['first date is bigger', { order1: { date: 256 }, order2: { date: 123 }, expected: -1} as SortsTestData],
+		['second date is bigger', { order1: { date: 123 }, order2: { date: 256 }, expected: 1} as SortsTestData],
+		['undefined data', { order1: undefined as unknown as Order, order2: { date: 123 }, expected: 0} as SortsTestData],
+		['date in order is undefined', { order1: { /* date is undefined */ }, order2: { date: 123 }, expected: 0} as SortsTestData],
+	];
+	it.each(table)('%s', (testName, testData) => {
+		const typedTestData = testData as SortsTestData;
+		expect(sortByDate(typedTestData.order1, typedTestData.order2)).toBe(typedTestData.expected);
 	});
 });

@@ -20,7 +20,7 @@ describe('Order.tsx', () => {
 	it('Handles null order', () => {
 		const order = null;
 		const wrapper = shallow(<OrderComponent order={order}/>);
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('Renders order with items: null', () => {

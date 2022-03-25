@@ -9,7 +9,6 @@ import { fakeOrders } from '../data/fakeOrders';
 configure({ adapter: new Adapter() });
 
 describe('Order.tsx', () => {
-	console.log(getDate);
 	beforeEach(() => {
 		(getDate as jest.Mock).mockReturnValue('18 марта, чт, 2022 год');
 	});

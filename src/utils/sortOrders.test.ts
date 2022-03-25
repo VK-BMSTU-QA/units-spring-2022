@@ -1,5 +1,5 @@
 import {getSortFunction, sortByDate, sortByItemCount, sortOrders, sortTypes} from './sortOrders';
-import {fakeOrders} from "../data/fakeOrders";
+import {fakeOrders} from '../data/fakeOrders';
 
 describe('sortOrders function', () => {
 	test.each([

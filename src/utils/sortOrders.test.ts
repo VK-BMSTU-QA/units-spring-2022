@@ -1,4 +1,5 @@
 import {sortByItemCount, sortByDate, getSortFunction, sortTypes, sortOrders} from './sortOrders';
+import {fakeOrders} from "../data/fakeOrders";
 
 describe('sortByItemCount function', () => {
 	it('same amount of items', () => {
@@ -107,6 +108,12 @@ describe('getSortFunction function', () => {
 });
 
 describe('sortOrders function', () => {
+	it('all arguments are correct', () => {
+		const sortFunc = jest.fn();
+		sortOrders(fakeOrders, sortFunc);
+		expect(sortFunc).toBeCalled();
+	});
+
 	it('order is empty', () => {
 		expect(sortOrders([], jest.fn())).toBeUndefined();
 	});

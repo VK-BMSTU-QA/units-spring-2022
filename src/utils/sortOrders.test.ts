@@ -1,5 +1,5 @@
 import {sortByItemCount, sortByDate, getSortFunction, sortTypes, sortOrders} from './sortOrders';
-import {fakeOrders} from "../data/fakeOrders";
+import {fakeOrders} from '../data/fakeOrders';
 
 describe('sortByItemCount function', () => {
 	it('same amount of items', () => {

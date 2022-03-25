@@ -1,4 +1,5 @@
 import {getSortFunction, sortByDate, sortByItemCount, sortOrders, sortTypes} from './sortOrders';
+import {fakeOrders} from "../data/fakeOrders";
 
 describe('sortOrders function', () => {
 	test.each([
@@ -6,6 +7,15 @@ describe('sortOrders function', () => {
 		{orders: {}},
 	])('invalid orders', (orders) => {
 		expect(sortOrders(orders, sortByItemCount)).toBe(undefined);
+	});
+
+	it('sortFunction calling', () => {
+		const orders = fakeOrders;
+
+		const spy = jest.spyOn(orders, 'sort');
+
+		sortOrders(orders, sortByItemCount);
+		expect(spy).toHaveBeenCalled();
 	});
 
 });

@@ -21,7 +21,7 @@ describe('Order.tsx', () => {
 
 	it('order as null', () => {
 		const wrapper = shallow(<OrderComponent order={null}/>);
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('order as invalid obj', () => {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx default order 1`] = `
+exports[`Order.tsx Default order: snapshot match 1`] = `
 <div
   className="Order"
 >
@@ -37,9 +37,7 @@ exports[`Order.tsx default order 1`] = `
 </div>
 `;
 
-exports[`Order.tsx empty order 1`] = `""`;
-
-exports[`Order.tsx no items order 1`] = `
+exports[`Order.tsx Order with no items: snapshot match 1`] = `
 <div
   className="Order"
 >
@@ -54,7 +52,7 @@ exports[`Order.tsx no items order 1`] = `
     <span
       id="date"
     >
-      9 декабря, вс, 2018 год
+      1 мая, пт, 2020 год
     </span>
   </div>
   <div

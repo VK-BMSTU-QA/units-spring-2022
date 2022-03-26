@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx Order.tsx OrderComponent({order: { date: 5, shop: undefined, items: [] }}) 1`] = `""`;
-
-exports[`Order.tsx Order.tsx OrderComponent({order: { date: undefined, shop: 'amazon', items: [Array] }}) 1`] = `""`;
-
 exports[`Order.tsx Order.tsx fakeOrders[0] - no items in the order - expected empty order 1`] = `
 <div
   className="Order"

@@ -35,10 +35,7 @@ describe('simple tests sortByItemCount on equal, less, more and empty cases ', (
 		const res = sortByItemCount(order1, order2);
 		expect(res).toEqual(expected);
 	});
-});
 
-
-describe('sortByItemCount invalid', () => {
 	it('all Nan', () => {
 		
 		const result = sortByItemCount(NaN, NaN);
@@ -65,6 +62,7 @@ describe('sortByItemCount invalid', () => {
 
 		expect(result).toBe(0);
 	});
+
 });
 
 describe('simple tests sortByDate on equal, less, more, empty and NaN cases ', () => {
@@ -86,11 +84,8 @@ describe('simple tests sortByDate on equal, less, more, empty and NaN cases ', (
 		};
 		const res = sortByDate(order1, order2);
 		expect(res).toEqual(expected);
-
 	});
-});
 
-describe('sortByDate invalid', () => {
 	it('all Nan', () => {
 		
 		const result = sortByDate(NaN, NaN);
@@ -128,58 +123,36 @@ describe('simple tests getSortFunction with supported comparators and null value
 	])('getSortFunction(%i)', (type, expected) => {
 
 		const res = getSortFunction(type);
+
 		expect(res).toEqual(expected);
 
 	});
 });
 
-describe('sortByDate tests', () => {
+
+describe('sortOrders check that comparator func is calling', () => {
 	test.each([
 		[[
 			{date: 10}, {date: 20}, 
 		], 
-		sortByDate, 
-		[
-			{date: 20}, {date: 10}, 
-		]
 		],
 		[[
 			{date: 20}, {date: 10}, 
 		], 
-		sortByDate, 
-		[
-			{date: 20}, {date: 10}, 
-		]
 		],
 		[[
 			{date: 20}, {date: 20}, 
 		], 
-		sortByDate, 
-		[
-			{date: 20}, {date: 20}, 
-		]
 		],
-		[[
-			{date: 20}, {date: 20}, 
-		], 
-		sortByDate, 
-		[
-			{date: 20}, {date: 20}, 
-		]
-		],
-		[[
-			{date: 20}, 
-		], 
-		sortByDate, 
-		[
-			{date: 20}, 
-		]
-		],	
-	])('sortOrder(%i, %i) -  by date', (orders, func, expected) => {
+	],
+	)('sortOrder(%i) -  by date', (orders) => {
+		const mockFunc = jest.fn();
+
 		expect(() => {
-			sortOrders(orders, func);
+			sortOrders(orders, mockFunc);
 		}).not.toThrow();
-		expect(orders).toEqual(expected);
+		
+		expect(mockFunc).toBeCalled();
 	});
 
 	it('stable sort', () => {
@@ -222,50 +195,15 @@ describe('sortByDate tests', () => {
 		const orders: Order[] = [];
 
 		const sortedOrders: Order[] = [];
+		
+		const mockFunc = jest.fn();
 
 		expect(() => {
-			sortOrders(orders, sortByDate);
+			sortOrders(orders, mockFunc);
 		}).not.toThrow();
 
 		expect(orders).toEqual(sortedOrders);
+		expect(mockFunc).not.toBeCalled();
 	});
 });
 
-
-describe('sortByItemCount tests', () => {
-	test.each([
-		[[
-			{items: [10]}, {items: [20]}, 
-		], 
-		sortByItemCount, 
-		[
-			{items: [10]}, {items: [20]}, 
-		]
-		],
-		[[
-			{items: [10, 20, 30]}, {items: [20, 30]}, 
-		], 
-		sortByItemCount, 
-		[
-			{items: [20, 30]}, {items: [10, 20, 30]}, 
-		]
-		],
-	])('sortOrder(%i, %i) -  by items', (orders, func, expected) => {
-		expect(() => {
-			sortOrders(orders, func);
-		}).not.toThrow();
-		expect(orders).toEqual(expected);
-	});
-
-	it('empty args for sortOrders call - expect empty result', () => {
-		const orders: Order[] = [];
-
-		const sortedOrders: Order[] = [];
-
-		expect(() => {
-			sortOrders(orders, sortByItemCount);
-		}).not.toThrow();
-
-		expect(orders).toEqual(sortedOrders);
-	});	
-});

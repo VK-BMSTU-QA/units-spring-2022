@@ -10,8 +10,17 @@ configure({ adapter: new Adapter() });
 
 describe('Order.tsx', () => {
 	let wrapper;
-	it('Casual order', () => {
+
+	beforeEach(() => {
 		getDate.mockReturnValue('1 января, чт, 1970 год');
+	});
+
+	afterAll(() => {
+		jest.resetModules();
+	});
+
+	it('Casual order', () => {
+		
 		const order: Order = {
 			id: 1,
 			date: 17032022,
@@ -19,14 +28,11 @@ describe('Order.tsx', () => {
 			items: ['Бургер', 'Кола']
 		};
 
-		const key = 0;
-
-		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
+		wrapper = shallow(<OrderComponent order = {order}/>);
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('no items', ()=>{
-		getDate.mockReturnValue('1 января, чт, 1970 год');
 		const order: Order = {
 			id: 1,
 			date: 17032022,
@@ -34,36 +40,28 @@ describe('Order.tsx', () => {
 			items: {}
 		};
 	
-		const key = 0;
-	
-		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
+		wrapper = shallow(<OrderComponent order = {order}/>);
 	
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('no date', ()=>{
-		getDate.mockReturnValue(null);
 		const order: Order = {
 			id: 1,
 			shop: 'MegaShop',
 			items: ['Бургер', 'Кола']
 		};
 	
-		const key = 0;
-	
-		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
+		wrapper = shallow(<OrderComponent order = {order}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('no order', ()=>{
-		getDate.mockReturnValue(null);
 		const order: Order = {};
 	
-		const key = 0;
-	
-		wrapper = shallow(<OrderComponent key = {key} order = {order}/>);
+		wrapper = shallow(<OrderComponent order = {order}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 });

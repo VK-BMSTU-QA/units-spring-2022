@@ -1,4 +1,4 @@
-import {sortOrders, getSortFunction, sortByDate, sortByItemCount} from './sortOrders';
+import {sortOrders, getSortFunction, sortByDate, sortByItemCount, sortTypes} from './sortOrders';
 
 describe('sortByItemCount function', () => {
 	it('same items count', () => {
@@ -44,6 +44,18 @@ describe('getSortFunction', () => {
 		const result = getSortFunction(sortType);
 		expect(result).toBeNull();
 	});
+
+	it('date sort', () => {
+		const sortType = sortTypes.DATE;
+		const result = getSortFunction(sortType);
+		expect(result).toBe(sortByDate);
+	});
+
+	it('item sort', () => {
+		const sortType = sortTypes.COUNT;
+		const result = getSortFunction(sortType);
+		expect(result).toBe(sortByItemCount);
+	});
 });
 
 describe('sortByDate function', () => {
@@ -67,6 +79,32 @@ describe('sortByDate function', () => {
 
 		const result = sortByDate(order1,order2);
 		expect(result).toBe(0);
+	});
+
+	it('diffrent dates second value more than first', () => {
+		const order1 = {
+			date: 1700000000
+		};
+
+		const order2 = {
+			date: 2000000000
+		};
+
+		const result = sortByDate(order1,order2);
+		expect(result).toBe(1);
+	});
+
+	it('diffrent dates first value more than second', () => {
+		const order1 = {
+			date: 2000000000
+		};
+
+		const order2 = {
+			date: 1700000000
+		};
+
+		const result = sortByDate(order1,order2);
+		expect(result).toBe(-1);
 	});
 });
 

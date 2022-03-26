@@ -37,8 +37,6 @@ exports[`Order.tsx Casual order 1`] = `
 </div>
 `;
 
-exports[`Order.tsx no date 1`] = `""`;
-
 exports[`Order.tsx no items 1`] = `
 <div
   className="Order"
@@ -66,5 +64,3 @@ exports[`Order.tsx no items 1`] = `
   </div>
 </div>
 `;
-
-exports[`Order.tsx no order 1`] = `""`;

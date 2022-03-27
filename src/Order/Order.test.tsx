@@ -22,7 +22,8 @@ describe('Order.tsx', () => {
 	it('render undefined order', () => {
 		wrapper = shallow(<OrderComponent key={0} order={undefined}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull()
+		// expect(wrapper).toMatchSnapshot();
 	});
 
 	it('render order with undefined shop', () => {
@@ -32,7 +33,8 @@ describe('Order.tsx', () => {
 		};
 		wrapper = shallow(<OrderComponent key={0} order={order}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull()
+		// expect(wrapper).toMatchSnapshot();
 	});
 
 	it('render order with undefined date', () => {
@@ -42,7 +44,8 @@ describe('Order.tsx', () => {
 		};
 		wrapper = shallow(<OrderComponent key={0} order={order}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull()
+		// expect(wrapper).toMatchSnapshot();
 	});
 
 	it('render order with undefined items', () => {

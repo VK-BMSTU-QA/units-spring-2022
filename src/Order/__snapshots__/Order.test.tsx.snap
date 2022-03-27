@@ -71,8 +71,6 @@ exports[`Order.tsx render order with items 1`] = `
 </div>
 `;
 
-exports[`Order.tsx render order with undefined date 1`] = `""`;
-
 exports[`Order.tsx render order with undefined items 1`] = `
 <div
   className="Order"
@@ -100,7 +98,3 @@ exports[`Order.tsx render order with undefined items 1`] = `
   </div>
 </div>
 `;
-
-exports[`Order.tsx render order with undefined shop 1`] = `""`;
-
-exports[`Order.tsx render undefined order 1`] = `""`;

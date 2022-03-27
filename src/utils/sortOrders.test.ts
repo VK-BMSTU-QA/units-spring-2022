@@ -125,24 +125,11 @@ describe('getSortFunction function', () => {
 });
 
 describe('sortOrders function', () => {
-	it('sort by item count', () => {
+	it('sort orders', () => {
 		const orders = [
 			{items: ['1', '2']},
 			{items: ['1', '2', '3']},
 			{items: ['1']},
-		];
-
-		const sortFunc = jest.fn();
-		sortOrders(orders, sortFunc);
-
-		expect(sortFunc).toBeCalled();
-	});
-
-	it('sort by date', () => {
-		const orders = [
-			{date: 1},
-			{date: 3},
-			{date: 2},
 		];
 
 		const sortFunc = jest.fn();

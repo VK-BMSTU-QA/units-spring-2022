@@ -10,7 +10,6 @@ describe('sortByItemCount function', () => {
 	])('sortByItemCount(%s, %s) with same items or error', (order1, order2, expectedRes) => {
 		const result = sortByItemCount(order1, order2);
 
-		expect(result).toBe(0);
 		expect(result).toBe(expectedRes);
 	});
 
@@ -54,7 +53,6 @@ describe('sortByDate function', () => {
 	])('sortByDate(%s, %s) with same items or error', (order1, order2, expectedRes) => {
 		const result = sortByDate(order1, order2);
 
-		expect(result).toBe(0);
 		expect(result).toBe(expectedRes);
 	});
 

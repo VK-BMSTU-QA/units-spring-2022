@@ -5,11 +5,11 @@ import {sortByItemCount} from './sortOrders';
 import {sortByDate} from './sortOrders';
 
 describe('sortOrders function', () => {
-
-	it('undefined orders', () => {
-		const orders = undefined;
-		const sortFunction = sortByItemCount;
-		expect(sortOrders(orders, sortFunction)).toBe(undefined);
+	test.each([
+		{orders: [], sortFunction: sortByItemCount, expected: undefined},
+		{orders: [], sortFunction: sortByDate, expected: undefined},
+	])('empty orders', ({orders, sortFunction, expected}) => {
+		expect(sortOrders(orders, sortFunction)).toBe(expected);
 	});
 	
 });
@@ -32,11 +32,11 @@ describe('getSortFunction function', () => {
 	});
 
 	it('sortByItemCount', () => {
-		const sortType = sortTypes.DATE;
+		const sortType = sortTypes.COUNT;
 
 		const result = getSortFunction(sortType);
 
-		expect(result).toBe(sortByDate);
+		expect(result).toBe(sortByItemCount);
 	});
 
 });

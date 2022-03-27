@@ -13,17 +13,17 @@ describe('OrderComponent function', () => {
 		getDate.mockReturnValue('test date');
 	});
 	afterAll(() => {
-		jest.resetModules();
+		jest.clearAllMocks();
 	});
 	
-	it('!order', () => {
+	it('order is empty', () => {
 		const testOrder = {
 		};
 		const wrapper = shallow(<OrderComponent order={testOrder}/>);
 		expect(wrapper.getElement()).toBeNull();
 	});
 
-	it('!order.shop or !order.date', () => {
+	it('order.shop is empty or order.date is empty', () => {
 		const testOrder = {
 			id: 1
 		};

@@ -38,10 +38,10 @@ describe('Order component', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	test.each([
+	it.each([
 		{id: 1, date: 12, shop: undefined, items: ['1', '2']},
 		{id: 1, date: undefined, shop: 'Сбереги Мега Маркер', items: ['1', '2']},
-	])('OrderComponent({order: $order})', (order) => {
+	])('bad case: incomplete object', (order) => {
 		const orderComponent = OrderComponent({order: order}); 
 		expect(orderComponent).toBeNull();
 	});

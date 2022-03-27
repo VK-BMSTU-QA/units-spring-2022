@@ -43,23 +43,11 @@ describe('sortByItemCount function', () => {
 		expect(result).toBe(-1);
 	});
 
-	it('bad case: null data', () => {
-		const result = sortByItemCount(null, null);
-
-		expect(result).toBe(0);
-	});
-
-	it('bad case: null order date', () => {
-		const order1 = {
-			items: null,
-		};
-
-		const order2 = {
-			items: null,
-		};
-
+	it.each([
+		[null, null],
+		[{items: null}, {items: null}],
+	])('bad case: null args', (order1, order2) => {
 		const result = sortByItemCount(order1, order2);
-
 		expect(result).toBe(0);
 	});
 });
@@ -107,23 +95,11 @@ describe('sortByDate function', () => {
 		expect(result).toBe(1);
 	});
 
-	it('bad case: null data', () => {
-		const result = sortByDate(null, null);
-
-		expect(result).toBe(0);
-	});
-
-	it('bad case: null order date', () => {
-		const order1 = {
-			date: null,
-		};
-
-		const order2 = {
-			date: null,
-		};
-
+	it.each([
+		[null, null],
+		[{date: null}, {date: null}],
+	])('bad case: null args', (order1, order2) => {
 		const result = sortByDate(order1, order2);
-
 		expect(result).toBe(0);
 	});
 });
@@ -175,9 +151,13 @@ describe('sortOrders function', () => {
 		expect(sortFunc).toBeCalled();
 	});
 
-	it('bad date', () => {
-		const result = sortOrders(null, sortByDate);
+	it.each([
+		[null],
+		[[]],
+	])('bad case: null orders', (orders) => {
+		const sortFunc = jest.fn();
+		sortOrders(orders, sortFunc);
 
-		expect(result).toBe(undefined);
+		expect(sortFunc).not.toBeCalled();
 	});
 });

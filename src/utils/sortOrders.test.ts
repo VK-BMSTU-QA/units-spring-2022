@@ -1,322 +1,149 @@
-import {getSortFunction, sortByDate, sortByItemCount, sortOrders} from './sortOrders';
+import {getSortFunction, sortByDate, sortByItemCount, sortOrders, sortTypes} from './sortOrders';
 import {Order} from '../data/fakeOrders';
 
 describe('sortByItemCount function', () => {
-	it.each([
-		[
-			'same items count',
-			{items: ['item1', 'item2']},
-			{items: ['1', '2']},
-			0
-		],
-		[
-			'the first bigger than the second',
-			{items: ['1', '2', '3']},
-			{items: ['1', '2']},
-			1
-		],
-		[
-			'the second bigger than the first',
-			{items: ['1', '2']},
-			{items: ['1', '2', '3']},
-			-1
-		],
-		[
-			'one order is empty',
-			{items: []},
-			{items: ['1', '2']},
-			-1
-		],
-		[
-			'items are undefined',
-			{items: undefined},
-			{items: undefined},
-			0
-		],
-	]) ('%p', (name, firstOrder, secondOrder, expected) => {
-		expect(sortByItemCount(firstOrder, secondOrder)).toEqual(expected);
+	it('same items count', () => {
+		const order1 = {
+			items: ['item1', 'item2'],
+		};
+		const order2 = {
+			items: ['1', '2'],
+		};
+		const result = sortByItemCount(order1, order2);
+		expect(result).toBe(0);
+	});
+
+	it('first order is bigger', () => {
+		const order1 = {
+			items: ['item1', 'item2', 'item3'],
+		};
+		const order2 = {
+			items: ['1', '2'],
+		};
+		const result = sortByItemCount(order1, order2);
+		expect(result).toBe(1);
+	});
+
+	it('second order is bigger', () => {
+		const order1 = {
+			items: ['item1'],
+		};
+		const order2 = {
+			items: ['1', '2'],
+		};
+		const result = sortByItemCount(order1, order2);
+		expect(result).toBe(-1);
+	});
+
+	it('first order is empty', () => {
+		const order1 = {
+			items: [],
+		};
+
+		const order2 = {
+			items: ['1', '2'],
+		};
+
+		const result = sortByItemCount(order1, order2);
+
+		expect(result).toBe(-1);
+	});
+
+	it('second order is empty', () => {
+		const order1 = {
+			items: ['1'],
+		};
+		const order2 = {
+			items: [],
+		};
+		const result = sortByItemCount(order1, order2);
+		expect(result).toBe(1);
+	});
+
+	it('no items in orders', () => {
+		const order1= {};
+		const order2 = {};
+		const result = sortByItemCount(order1, order2);
+		expect(result).toBe(0);
 	});
 });
 
 describe('sortByDate function', () => {
-	it.each([
-		[
-			'same orders` data',
-			{
-				date: 1588359900000,
-			},
-			{
-				date: 1588359900000,
-			},
-			0
-		],
-		[
-			'the first newer than the second',
-			{
-				date: 1588359900001,
-			},
-			{
-				date: 1588359900000,
-			},
-			-1
-		],
-		[
-			'the second newer than the first',
-			{
-				date: 1588359900000,
-			},
-			{
-				date: 1588359900001,
-			},
-			1
-		],
-		[
-			'orders without data',
-			{
-				date: undefined,
-			},
-			{
-				date: undefined,
-			},
-			0
-		],
-	]) ('%p', (name, firstOrder, secondOrder, expected) => {
-		expect(sortByDate(firstOrder, secondOrder)).toEqual(expected);
+	it('same orders` data', () => {
+		const order1 = {
+			date: 1,
+		};
+		const order2 = {
+			date: 1,
+		};
+		const result = sortByDate(order1, order2);
+		expect(result).toBe(0);
+	});
+
+	it('the first newer than the second', () => {
+		const order1 = {
+			date: 2,
+		};
+		const order2 = {
+			date: 1,
+		};
+		const result = sortByDate(order1, order2);
+
+		expect(result).toBe(-1);
+	});
+
+	it('the second newer than the second', () => {
+		const order1 = {
+			date: 1,
+		};
+		const order2 = {
+			date: 2,
+		};
+		const result = sortByDate(order1, order2);
+		expect(result).toBe(1);
+	});
+
+	it('the first newer than the second', () => {
+		const order1 = {};
+		const order2 = {};
+		const result = sortByDate(order1, order2);
+		expect(result).toBe(0);
 	});
 });
 
 describe('getSortFunction function', () => {
-	it.each([
-		[
-			'sort by count',
-			'count',
-			sortByItemCount,
-		],
-		[
-			'sort by date',
-			'date',
-			sortByDate,
-		],
-		[
-			'not date or count sort',
-			'notCountAndNoteDate',
-			null,
-		],
-	]) ('%p', (name, sortType, expected) => {
-		expect(getSortFunction(sortType)).toEqual(expected);
+	it('sort by date', () => {
+		expect(getSortFunction(sortTypes.DATE)).toBe(sortByDate);
+	});
+	it('sort by count', () => {
+		expect(getSortFunction(sortTypes.COUNT)).toBe(sortByItemCount);
+	});
+	it('not date or count sort', () => {
+		expect(getSortFunction('notCountAndNoteDate')).toBeNull();
 	});
 });
 
 describe('sortOrders function', () => {
-	it('sort order by date', () => {
-		const fakeOrders: Order[] = [
-			{
-				id: 1,
-				date: 1100000000000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2', '3', '4', '5'],
-			},
-			{
-				id: 2,
-				date: 1200000000000,
-				shop: 'Alihandro Express',
-				items: [
-					'1','2',
-				]
-			},
-			{
-				id: 3,
-				date: 1300000000000,
-				shop: 'Lamodник.ru',
-				items: [
-					'1', '2','3'
-				]
-			}];
-		const sortedFakeOrders: Order[] = [
-			{
-				id: 3,
-				date: 1300000000000,
-				shop: 'Lamodник.ru',
-				items: [
-					'1', '2','3'
-				]
-			},
-			{
-				id: 2,
-				date: 1200000000000,
-				shop: 'Alihandro Express',
-				items: [
-					'1','2',
-				]
-			},
-			{
-				id: 1,
-				date: 1100000000000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2', '3', '4', '5'],
-			},
+	it('comparator func is calling', () => {
+		const orders: Order[] = [
+			{id: 1},
+			{id: 2},
 		];
-		sortOrders(fakeOrders, sortByDate);
-
-		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
-	});
-	it('sort with the same date', () => {
-		const fakeOrders: Order[] = [
-			{
-				id: 1,
-				date: 1100000000000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2', '3', '4', '5'],
-			},
-			{
-				id: 2,
-				date: 1100000000000,
-				shop: 'Alihandro Express',
-				items: [
-					'1','2',
-				]
-			},
-		];
-		const sortedFakeOrders: Order[] = [
-			{
-				id: 1,
-				date: 1100000000000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2', '3', '4', '5'],
-			},
-			{
-				id: 2,
-				date: 1100000000000,
-				shop: 'Alihandro Express',
-				items: [
-					'1','2',
-				]
-			},
-		];
-		sortOrders(fakeOrders, sortByDate);
-
-		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
+		const mockFunc = jest.fn();
+		expect(() => {
+			sortOrders(orders, mockFunc);
+		}).not.toThrow();
+		expect(mockFunc).toBeCalled();
 	});
 
-	it('sort order by orders count', () => {
-		const fakeOrders: Order[] = [
-			{
-				id: 5,
-				date: 1588359900000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2', '3', '4', '5'],
-			},
-			{
-				id: 2,
-				date: 1652481120001,
-				shop: 'Lamodник.ru',
-				items: [
-					'1','2'
-				]
-			},
-			{
-				id: 3,
-				date: 1544356800002,
-				shop: 'Alihandro Express',
-				items: [
-					'1', '2','3'
-				]
-			}];
-		const sortedFakeOrders: Order[] = [
-			{
-				id: 2,
-				date: 1652481120001,
-				shop: 'Lamodник.ru',
-				items: [
-					'1', '2',
-				]
-			},
-			{
-				id: 3,
-				date: 1544356800002,
-				shop: 'Alihandro Express',
-				items: [
-					'1','2', '3'
-				]
-			},
-			{
-				id: 5,
-				date: 1588359900000,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2', '3', '4', '5'],
-			},];
-		sortOrders(fakeOrders, sortByItemCount);
-
-		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
-	});
-
-	it('sort sorted orders by date', () => {
-		const fakeOrders: Order[] = [
-			{
-				id: 1,
-				date: 1588359900002,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2', '3', '4', '5'],
-			},
-			{
-				id: 2,
-				date: 1544356800001,
-				shop: 'Alihandro Express',
-				items: [
-					'1',
-				]
-			},];
-		const sortedFakeOrders: Order[] = fakeOrders;
-		sortOrders(fakeOrders, sortByDate);
-
-		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
-	});
-
-	it('sort sorted orders by orders` count', () => {
-		const fakeOrders: Order[] = [
-			{
-				id: 1,
-				date: 1588359900002,
-				shop: 'Сбереги Мега Маркер',
-				items: ['1', '2'],
-			},
-			{
-				id: 2,
-				date: 1544356800001,
-				shop: 'Alihandro Express',
-				items: ['1', '2', '3', '4', '5']
-			},];
-		const sortedFakeOrders: Order[] = fakeOrders;
-		sortOrders(fakeOrders, sortByItemCount);
-
-		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
-	});
-
-	it('sort empty orders', () => {
-		const fakeOrders: Order[] = [];
-		const sortedFakeOrders: Order[] = fakeOrders;
-		sortOrders(fakeOrders, sortByItemCount);
-
-		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
-	});
-	it('sort the same count of orders', () => {
-		const fakeOrders: Order[] = [
-			{
-				id: 1,
-				date: 1544356800001,
-				shop: 'Alihandro Express',
-				items: ['1', '2',]
-			},
-			{
-				id: 2,
-				date: 1544356800001,
-				shop: 'Alihandro Express',
-				items: ['1', '2',]
-			},];
-		const sortedFakeOrders: Order[] = fakeOrders;
-		sortOrders(fakeOrders, sortByItemCount);
-
-		expect(fakeOrders).toStrictEqual(sortedFakeOrders);
+	it('empty orders-> comparator func is not calling', () => {
+		const orders: Order[] = [];
+		const sortedOrders: Order[] = [];
+		const mockFunc = jest.fn();
+		expect(() => {
+			sortOrders(orders, mockFunc);
+		}).not.toThrow();
+		expect(orders).toEqual(sortedOrders);
+		expect(mockFunc).not.toBeCalled();
 	});
 });
-

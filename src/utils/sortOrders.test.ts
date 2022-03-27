@@ -131,21 +131,12 @@ describe('simple tests getSortFunction with supported comparators and null value
 
 
 describe('sortOrders check that comparator func is calling', () => {
-	test.each([
-		[[
-			{date: 10}, {date: 20}, 
-		], 
-		],
-		[[
+	it('check comparator', () => {
+
+		const orders: Order[] = [
 			{date: 20}, {date: 10}, 
-		], 
-		],
-		[[
-			{date: 20}, {date: 20}, 
-		], 
-		],
-	],
-	)('sortOrder(%i) -  by date', (orders) => {
+		];
+
 		const mockFunc = jest.fn();
 
 		expect(() => {
@@ -153,42 +144,6 @@ describe('sortOrders check that comparator func is calling', () => {
 		}).not.toThrow();
 		
 		expect(mockFunc).toBeCalled();
-	});
-
-	it('stable sort', () => {
-		const orders  = [ 
-			{
-				id: 2,
-				date: 2008,
-			},
-			{
-				id: 1,
-				date: 100,
-			},
-			{
-				id: 1,
-				date: 2008,
-			}
-		];
-		const ordersSorted  = [ 
-			{
-				id: 2,
-				date: 2008,
-			},
-			{
-				id: 1,
-				date: 2008,
-			}, 
-			{
-				id: 1,
-				date: 100,
-			},
-			
-		];
-	
-		sortOrders(orders, sortByDate);
-	
-		expect(orders).toEqual(ordersSorted);
 	});
 
 	it('empty args for sortOrders call - expect empty result', () => {

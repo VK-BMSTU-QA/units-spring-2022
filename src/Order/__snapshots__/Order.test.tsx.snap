@@ -1,37 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Order.tsx undefined shop 1`] = `""`;
-
-exports[`Order.tsx render undefined order 1`] = `""`;
-
-exports[`Order.tsx render order without items 1`] = `
-<div
-  className="Order"
->
-  <div
-    className="Order-header"
-  >
-    <span
-      className="Order-shop"
-    >
-      Сбереги Мега Маркер
-    </span>
-    <span
-      id="date"
-    >
-      2022-03-17
-    </span>
-  </div>
-  <div
-    className="Order-items"
-  >
-    <div>
-      Заказ пуст...
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Order.tsx render order items 1`] = `
 <div
   className="Order"
@@ -75,7 +43,6 @@ exports[`Order.tsx render order items 1`] = `
 </div>
 `;
 
-exports[`Order.tsx render order undefined date 1`] = `""`;
 
 exports[`Order.tsx render order undefined items 1`] = `
 <div
@@ -105,4 +72,32 @@ exports[`Order.tsx render order undefined items 1`] = `
 </div>
 `;
 
+exports[`Order.tsx render order without items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      Сбереги Мега Маркер
+    </span>
+    <span
+      id="date"
+    >
+      2022-03-17
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;
 
+exports[`Order.tsx undefined shop 1`] = `""`;

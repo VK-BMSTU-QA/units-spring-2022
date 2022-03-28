@@ -18,7 +18,7 @@ describe('Order.tsx', () => {
 	});
 
 	it('render order items', () => {
-		const wrapper = shallow(<OrderComponent key={0} order={{
+		const wrapper = shallow(<OrderComponent order={{
 			id: 123,
 			date: 1544356800000,
 			shop: 'Alihandro Express',
@@ -38,29 +38,23 @@ describe('Order.tsx', () => {
 			shop: undefined,
 			date: 1234,
 		};
-		const wrapper = shallow(<OrderComponent key={0} order={order} />);
-
-		expect(wrapper).toMatchSnapshot();
-	});
-
-	it('render undefined order', () => {
-		const wrapper = shallow(<OrderComponent key={0} order={undefined} />);
+		const wrapper = shallow(<OrderComponent order={order} />);
 
 		expect(wrapper).toMatchSnapshot();
 	});
 
 	it('render order undefined date', () => {
 
-		const wrapper = shallow(<OrderComponent key={0} order={{
+		const wrapper = shallow(<OrderComponent order={{
 			date: undefined,
 		}} />);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull();
 	});
 
 	it('render order undefined items', () => {
 
-		const wrapper = shallow(<OrderComponent key={0} order={{
+		const wrapper = shallow(<OrderComponent order={{
 			shop: 'sample shop',
 			date: 1234,
 			items: undefined,
@@ -70,7 +64,7 @@ describe('Order.tsx', () => {
 	});
 
 	it('render order without items', () => {
-		const wrapper = shallow(<OrderComponent key={0} order={{
+		const wrapper = shallow(<OrderComponent order={{
 			id: 100,
 			date: 1588359900000,
 			shop: 'Сбереги Мега Маркер',

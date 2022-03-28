@@ -30,7 +30,7 @@ describe('Order component', () => {
 		};
 		wrapper = shallow(<OrderComponent key={1} order={order}/>);
 
-		expect(wrapper.getElement()).toBeNull()
+		expect(wrapper.getElement()).toBeNull();
 	});
 	it('render with date undefined', () => {
 		const order = {
@@ -41,12 +41,12 @@ describe('Order component', () => {
 		};
 		wrapper = shallow(<OrderComponent key={1} order={order}/>);
 
-		expect(wrapper.getElement()).toBeNull()
+		expect(wrapper.getElement()).toBeNull();
 	});
 	it('render with order undefined', () => {
 		wrapper = shallow(<OrderComponent key={1} order={undefined}/>);
 
-		expect(wrapper.getElement()).toBeNull()
+		expect(wrapper.getElement()).toBeNull();
 	});
 	it('render with items undefined', () => {
 		const order = {

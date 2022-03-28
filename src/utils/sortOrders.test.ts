@@ -3,34 +3,16 @@ import {Order} from '../data/fakeOrders';
 
 
 describe('sortByItemCount function', () => {
-	it('first order is null', () => {
-		const order2 = {
-			items: ['1', '2'],
-		};
-		const result = sortByItemCount(null, order2);
-
-		expect(result).toBe(0);
-	});
-	it('second order is null', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-		const result = sortByItemCount(order1, null);
-
-		expect(result).toBe(0);
-	});
-	it('same items count', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: ['1', '2'],
-		};
-
+	test.each([
+		[{ items: ['item1', 'item2'] }, { items: ['1', '2'] }, 0],  	// same items count
+		[{}, { items: ['1'] }, 0],  									// first struct is empty
+		[{ items: ['1', '2'] }, {}, 0],  								// second struct is empty
+		[undefined, { items: ['1', '2'] }, 0],  						// first struct is undefined
+		[{ items: ['1', '2'] }, undefined, 0],  						// second struct is undefined
+	])('sortByItemCount(%s, %s) with same items or error', (order1, order2, expectedRes) => {
 		const result = sortByItemCount(order1, order2);
 
-		expect(result).toBe(0);
+		expect(result).toBe(expectedRes);
 	});
 	it('items count less', () => {
 		const order1 = {
@@ -57,32 +39,6 @@ describe('sortByItemCount function', () => {
 		const result = sortByItemCount(order1, order2);
 
 		expect(result).toBe(1);
-	});
-	it('items undefined', () => {
-		const order1 = {
-			items: ['item1', 'item2'],
-		};
-
-		const order2 = {
-			items: undefined,
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
-	});
-	it('items undefind2', () => {
-		const order1 = {
-			items: undefined,
-		};
-
-		const order2 = {
-			items: ['item1', 'item2'],
-		};
-
-		const result = sortByItemCount(order1, order2);
-
-		expect(result).toBe(0);
 	});
 });
 

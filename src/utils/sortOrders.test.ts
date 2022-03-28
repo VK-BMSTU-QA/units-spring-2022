@@ -3,7 +3,7 @@ import {Order} from '../data/fakeOrders';
 
 
 describe('sortByItemCount function', () => {
-	it('no orders', () => {
+	it('first order is null', () => {
 		const order2 = {
 			items: ['1', '2'],
 		};
@@ -11,7 +11,7 @@ describe('sortByItemCount function', () => {
 
 		expect(result).toBe(0);
 	});
-	it('no orders2', () => {
+	it('second order is null', () => {
 		const order1 = {
 			items: ['item1', 'item2'],
 		};
@@ -58,7 +58,7 @@ describe('sortByItemCount function', () => {
 
 		expect(result).toBe(1);
 	});
-	it('items undefind', () => {
+	it('items undefined', () => {
 		const order1 = {
 			items: ['item1', 'item2'],
 		};
@@ -87,60 +87,16 @@ describe('sortByItemCount function', () => {
 });
 
 describe('sortByDate function', () => {
-	it('no orders', () => {
-		const order2 = {
-			date: 123,
-		};
-		const result = sortByDate(null, order2);
-
-		expect(result).toBe(0);
-	});
-	it('no orders2', () => {
-		const order1 = {
-			date: 123,
-		};
-		const result = sortByDate(order1, null);
-
-		expect(result).toBe(0);
-	});
-	it('date undefinde', () => {
-		const order1 = {
-			date: 123,
-		};
-
-		const order2 = {
-			date: undefined,
-		};
-
+	test.each([
+		[{ date: 123 }, { date: 123 }, 0],  	// same date
+		[{}, { date: 123 }, 0],  				// first struct is empty
+		[{ date: 123 }, {}, 0],  				// second struct is empty
+		[undefined, { date: 123 }, 0],  		// first struct is undefined
+		[{ date: 123 }, undefined, 0],  		// second struct is undefined
+	])('sortByDate(%s, %s) with same items or error', (order1, order2, expectedRes) => {
 		const result = sortByDate(order1, order2);
 
-		expect(result).toBe(0);
-	});
-	it('date undefinde 2', () => {
-		const order1 = {
-			date: undefined,
-		};
-
-		const order2 = {
-			date: 123,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
-	});
-	it('same date', () => {
-		const order1 = {
-			date: 160,
-		};
-
-		const order2 = {
-			date: 160,
-		};
-
-		const result = sortByDate(order1, order2);
-
-		expect(result).toBe(0);
+		expect(result).toBe(expectedRes);
 	});
 	it('date more', () => {
 		const order1 = {
@@ -203,13 +159,13 @@ describe('sortOrders function', () => {
 		sortOrders(orders, sortFunc);
 		expect(sortFunc).toBeCalled();
 	});
-	it('undefind', () => {
+	it('undefined', () => {
 		const sortFunc = jest.fn();
 		const result = sortOrders(undefined, sortFunc);
 
 		expect(result).toBeUndefined();
 	});
-	it('undefind2', () => {
+	it('first order is number', () => {
 		const sortFunc = jest.fn();
 		const result = sortOrders(2, sortFunc);
 

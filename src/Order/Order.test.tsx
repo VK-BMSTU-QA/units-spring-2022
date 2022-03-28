@@ -21,7 +21,7 @@ describe('Order component', () => {
 		jest.clearAllMocks();
 	});
 
-	it('render with undefined', () => {
+	it('render with shop undefined', () => {
 		const order = {
 			id: 1,
 			shop: undefined,
@@ -30,9 +30,9 @@ describe('Order component', () => {
 		};
 		wrapper = shallow(<OrderComponent key={1} order={order}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull()
 	});
-	it('render with undefined2', () => {
+	it('render with date undefined', () => {
 		const order = {
 			id: 1,
 			shop: '123',
@@ -41,14 +41,14 @@ describe('Order component', () => {
 		};
 		wrapper = shallow(<OrderComponent key={1} order={order}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull()
 	});
-	it('render with undefined3', () => {
+	it('render with order undefined', () => {
 		wrapper = shallow(<OrderComponent key={1} order={undefined}/>);
 
-		expect(wrapper).toMatchSnapshot();
+		expect(wrapper.getElement()).toBeNull()
 	});
-	it('render with undefined4', () => {
+	it('render with items undefined', () => {
 		const order = {
 			id: 1,
 			date: 123,

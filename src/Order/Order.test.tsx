@@ -32,8 +32,8 @@ describe('Order.tsx', () => {
 	});
 
 	it('test name: null data', () => {
-		const wrapper = shallow(<OrderComponent order={{data: 0, id: 1}}/>);
-		expect(wrapper).toMatchSnapshot();
+		const wrapper = shallow(<OrderComponent order={{date: 0, id: 1}}/>);
+		expect(wrapper.getElement()).toBeNull();
 		expect(getDate).toHaveBeenCalledTimes(0);
 	});
 });

@@ -67,8 +67,6 @@ exports[`Order.tsx test name: no items 1`] = `
 </div>
 `;
 
-exports[`Order.tsx test name: null data 1`] = `""`;
-
 exports[`Order.tsx test name: one item 1`] = `
 <div
   className="Order"

@@ -12,6 +12,21 @@ describe('sortOrders function', () => {
 		expect(sortOrders(orders, sortFunction)).toBe(expected);
 	});
 	
+	describe('sortOrders function', () => {
+		const orders = [
+			{
+				date: 10102020
+			},
+			{
+				date: 10102021
+			},
+		]
+		const sortFunction = jest.fn();
+		sortOrders(orders, sortFunction);
+		
+		expect(sortFunction).toBeCalled();
+	});
+
 });
 
 describe('getSortFunction function', () => {

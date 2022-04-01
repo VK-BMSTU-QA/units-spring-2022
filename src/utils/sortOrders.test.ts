@@ -20,7 +20,7 @@ describe('sortOrders function', () => {
 			{
 				date: 10102021
 			},
-		]
+		];
 		const sortFunction = jest.fn();
 		sortOrders(orders, sortFunction);
 		

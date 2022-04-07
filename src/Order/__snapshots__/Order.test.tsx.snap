@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Order component test with items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      dore
+    </span>
+    <span
+      id="date"
+    >
+      2 апреля 2022 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      d
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      k
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order component test without id 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      dore
+    </span>
+    <span
+      id="date"
+    >
+      2 апреля 2022 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div
+      className="Order-item"
+      key="0"
+    >
+      d
+    </div>
+    <div
+      className="Order-item"
+      key="1"
+    >
+      k
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Order component test without items 1`] = `
+<div
+  className="Order"
+>
+  <div
+    className="Order-header"
+  >
+    <span
+      className="Order-shop"
+    >
+      dore
+    </span>
+    <span
+      id="date"
+    >
+      2 апреля 2022 год
+    </span>
+  </div>
+  <div
+    className="Order-items"
+  >
+    <div>
+      Заказ пуст...
+    </div>
+  </div>
+</div>
+`;

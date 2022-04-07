@@ -7,116 +7,123 @@ import {
 } from './sortOrders';
 import { Order } from '../data/fakeOrders';
 
-test.each([
-	[{ items: ['1', '2'] }, { items: ['1', '2'] }, 0],
-	[{ items: ['1', '2'] }, { items: ['1'] }, 1],
-	[{ items: ['1'] }, { items: ['1', '2'] }, -1],
-	[{}, { items: ['1', '2'] }, 0],
-])('sortByItemCount function', (a, b, expected) => {
-	expect(sortByItemCount(a, b)).toBe(expected);
+
+describe('sortByItemCount function', () => {
+	it('first greatest then second', () => {
+		const a = { items: ['1', '2'] };
+		const b = { items: ['1'] };
+
+		expect(sortByItemCount(a, b)).toBe(1);
+	});
+
+	it('second greatest then first', () => {
+		const a = { items: ['1'] };
+		const b = { items: ['1', '2'] };
+
+		expect(sortByItemCount(a, b)).toBe(-1);
+	});
+
+	it('equal items', () => {
+		const a = { items: ['1', '2'] };
+		const b = { items: ['1', '2'] };
+
+		expect(sortByItemCount(a, b)).toBe(0);
+	});
+
+	it.each([
+		[{items: ['1', '2'] }, {}],
+		[{}, { items: ['1', '2'] }],
+		[{}, {}],
+	])('no items', (a, b) => {
+		expect(sortByItemCount(a, b)).toBe(0);
+	});
 });
 
-test.each([
-	[{ date: 1 }, { date: 1 }, 0],
-	[{ date: 2 }, { date: 1 }, -1],
-	[{ date: 1 }, { date: 2 }, 1],
-	[{}, { date: 1 }, 0],
-])('sortByDate function', (a, b, expected) => {
-	expect(sortByDate(a, b)).toBe(expected);
+
+describe('sortByDate function', () => {
+	it('first greatest then second', () => {
+		const a = { date: 2 };
+		const b = { date: 1 };
+
+		expect(sortByDate(a, b)).toBe(-1);
+	});
+
+	it('second greatest then first', () => {
+		const a = { date: 1 };
+		const b = { date: 2 };
+
+		expect(sortByDate(a, b)).toBe(1);
+	});
+
+	it('equal items', () => {
+		const a = { date: 1 };
+		const b = { date: 1 };
+
+		expect(sortByDate(a, b)).toBe(0);
+	});
+
+	it.each([
+		[{}, { date: 1 }],
+		[{ date: 1 }, {}],
+		[{}, {}],
+	])('no date', (a, b) => {
+		expect(sortByDate(a, b)).toBe(0);
+	});
 });
 
-test.each([
-	[sortTypes.DATE, sortByDate],
-	[sortTypes.COUNT, sortByItemCount],
-	['1', null],
-])('getSortFunction function', (a, expected) => {
-	expect(getSortFunction(a)).toBe(expected);
+describe('getSortFunction function', () => {
+	it('get sortByDate', () => {
+		expect(getSortFunction(sortTypes.DATE)).toBe(sortByDate);
+	});
+
+	it('get sortByItemCount', () => {
+		expect(getSortFunction(sortTypes.COUNT)).toBe(sortByItemCount);
+	});
+
+	it('get unknown function', () => {
+		expect(getSortFunction('`')).toBeNull();
+	});
+
+	it.each([
+		[{}, { date: 1 }],
+		[{ date: 1 }, {}],
+		[{}, {}],
+	])('no date', (a, b) => {
+		expect(sortByItemCount(a, b)).toBe(0);
+	});
 });
 
-test('order by date', () => {
-	const orders = [
-		{
-			id: 1,
-			date: 2,
-		},
-		{
-			id: 2,
-			date: 1,
-		},
-		{
-			id: 3,
-			date: 4,
-		},
-	];
+describe('sortOrders function', () => {
+	it('correct values', () => {
+		const orders = [
+			{
+				id: 1,
+				date: 2,
+			},
+			{
+				id: 2,
+				date: 1,
+			},
+			{
+				id: 3,
+				date: 4,
+			},
+		];
 
-	const sorted_orders = [
-		{
-			id: 3,
-			date: 4,
-		},
-		{
-			id: 1,
-			date: 2,
-		},
-		{
-			id: 2,
-			date: 1,
-		},
-	];
+		const mockFunc = jest.fn();
 
-	expect(() => {
-		sortOrders(orders, sortByDate);
-	}).not.toThrow();
+		sortOrders(orders, mockFunc);
 
-	expect(orders).toStrictEqual(sorted_orders);
-});
+		expect(mockFunc).toBeCalled();
+	});
 
-test('empty orders', () => {
-	const orders: Order[] = [];
+	it('empty orders', () => {
+		const orders: Order[] = [];
 
-	const sorted_orders: Order[] = [];
+		const sortedOrders: Order[] = [];
 
-	expect(() => {
-		sortOrders(orders, sortByDate);
-	}).not.toThrow();
+		sortOrders(orders, jest.fn());
 
-	expect(orders).toStrictEqual(sorted_orders);
-});
-
-test('order by items', () => {
-	const orders = [
-		{
-			id: 1,
-			items: ['1', '2'],
-		},
-		{
-			id: 2,
-			items: ['1', '2', '3'],
-		},
-		{
-			id: 3,
-			items: ['1'],
-		},
-	];
-
-	const sorted_orders = [
-		{
-			id: 3,
-			items: ['1'],
-		},
-		{
-			id: 1,
-			items: ['1', '2'],
-		},
-		{
-			id: 2,
-			items: ['1', '2', '3'],
-		},
-	];
-
-	expect(() => {
-		sortOrders(orders, sortByItemCount);
-	}).not.toThrow();
-
-	expect(orders).toStrictEqual(sorted_orders);
+		expect(orders).toStrictEqual(sortedOrders);
+	});
 });
